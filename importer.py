@@ -9,7 +9,7 @@ try:
         return M
     __builtins__.__dict__['__import__'] = importer
     del importlib
- except Exception as err:
+except Exception as err:
     with open("output.txt",'w') as f:
         f.write("Error: {}".format(err))
         f.close()
