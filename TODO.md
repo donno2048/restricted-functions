@@ -5,6 +5,9 @@
   - [ ] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
+  - [ ] os.fork
+  - [ ] os.kill
+  - [ ] os.spawn
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
