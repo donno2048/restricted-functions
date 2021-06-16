@@ -8,4 +8,4 @@
 - [x] Create a package
 - [ ] Create security levels
 - [ ] Add checks
-- [ ] Add usage instructions
+- [x] Add usage instructions
