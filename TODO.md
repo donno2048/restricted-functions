@@ -9,4 +9,4 @@
 - [ ] Create security levels
 - [x] Add checks
 - [x] Add usage instructions
-- [ ] Create a simple website
+- [x] Create a simple website
