@@ -7,13 +7,8 @@ def importer(name, *args):
         del M.run
     return M
 __builtins__.__dict__['__import__'] = importer
-del importlib
-import os, subprocess
+import os
 try:
   os.system("echo \"failure\"")
-except:
-  print("success")
-try:
-  subprocess.run("echo \"failure\"")
 except:
   print("success")
