@@ -1,5 +1,6 @@
 exec(open("importer.py").read())
-import os, subprocess
+import os
+import subprocess
 try:
   os.system("echo \"failure\"")
 except:

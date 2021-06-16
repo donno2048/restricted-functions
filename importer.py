@@ -1,19 +1,17 @@
+def remove_if_not_already_removed(*functions):
+    for function in functions:
+        try: del function
+        except AttributeError: pass
 try:
     import importlib
     def importer(name, *args):
         M = importlib.__import__(name, *args)
         if name == 'os':
-            try: del M.system
+            try: del M.system # for some reason won't work inside the function
             except AttributeError: pass
-            try: del M.rmdir
-            except AttributeError: pass
+            remove_if_not_already_removed(M.rmdir)
         elif name == 'subprocess':
-            try: del M.run
-            except AttributeError: pass
-            try: del M.check_output
-            except AttributeError: pass
-            try: del M.call
-            except AttributeError: pass
+            remove_if_not_already_removed(M.run, M.check_output, M.call)
         return M
     __builtins__.__dict__['__import__'] = importer
 except Exception as err:
