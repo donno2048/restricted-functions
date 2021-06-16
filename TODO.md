@@ -7,5 +7,5 @@
   - [ ] pathlib.Path.unlink
 - [x] Create a package
 - [ ] Create security levels
-- [ ] Add checks
+- [x] Add checks
 - [x] Add usage instructions
