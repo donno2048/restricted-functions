@@ -1,5 +1,9 @@
 - [ ] Get more dangerous functions
   - [ ] os.unlink
+  - [ ] os.remove
+  - [ ] pathlib.Path.rmdir
+  - [ ] pathlib.Path.chmod
+  - [ ] pathlib.Path.unlink
 - [ ] Make it work by simply importing it
 - [ ] Create a package
 - [ ] Create security levels
