@@ -1,0 +1,5 @@
+- [ ] Get more dangerous functions
+  - [ ] os.unlink
+- [ ] Make it work by simply importing it
+- [ ] Create a package
+- [ ] Create security levels
