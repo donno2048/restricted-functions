@@ -3,9 +3,11 @@ try:
     def importer(name, *args):
         M = importlib.__import__(name, *args)
         if name == 'os':
-            del M.system
+            try: del M.system
+            except AttributeError: pass
         elif name == 'subprocess':
-            del M.run
+            try: del M.run
+            except AttributeError: pass
         return M
     __builtins__.__dict__['__import__'] = importer
 except Exception as err:
