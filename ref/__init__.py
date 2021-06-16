@@ -4,10 +4,13 @@ def main(__builtins__: ModuleType) -> None:
     def importer(name, *args):
         M = importlib.__import__(name, *args)
         if name == 'os':
-            try: del M.system
+            function = None
+            try: function = M.system
             except AttributeError: pass
-            try: del M.rmdir
+            else: del M.system
+            try: function = M.rmdir
             except AttributeError: pass
+            else: del M.rmdir
         elif name == 'subprocess':
             try: del M.run
             except AttributeError: pass
