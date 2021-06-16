@@ -1,4 +1,5 @@
 import ref
+ref.main(__builtins__)
 import os, subprocess, shutil
 try: os.system("echo \"failure\"")
 except: pass
