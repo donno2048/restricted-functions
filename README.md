@@ -7,8 +7,8 @@ By default, restricted functions prevents Python code from deleting directories 
 To use restricted-functions, enter `pip install restricted-functions` into your command line.<br>
 If you want to use it, add the following code to your file, and you are set:
 ```python
-import restricted-functions
-restricted-functions.main()
+ import ref
+ref.main(__builtins__)
 ```
 
 ### What is restricted-functions for?
