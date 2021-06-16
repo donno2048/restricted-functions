@@ -1,7 +1,7 @@
 - [ ] Get more dangerous functions
   - [ ] os.unlink
   - [ ] os.remove
-  - [ ] os.Popen
+  - [ ] os.popen
   - [ ] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
