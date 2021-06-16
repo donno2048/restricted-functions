@@ -8,6 +8,14 @@
   - [ ] os.fork
   - [ ] os.kill
   - [ ] os.spawn
+  - [ ] os.execl
+  - [ ] os.execle
+  - [ ] os.execlp
+  - [ ] os.execlpe
+  - [ ] os.execv
+  - [ ] os.execve
+  - [ ] os.execvp
+  - [ ] os.execvpe
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
