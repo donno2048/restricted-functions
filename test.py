@@ -1,6 +1,5 @@
 exec(open("importer.py").read())
-import os
-import subprocess
+import os, subprocess, shutil
 try:
   os.system("echo \"failure\"")
 except:
@@ -19,5 +18,9 @@ except:
   print("success")
 try:
   subprocess.call("echo \"failure\"")
+except:
+  print("success")
+try:
+  shutil.rmtree("../restricted-functions")
 except:
   print("success")
