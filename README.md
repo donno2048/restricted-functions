@@ -13,7 +13,7 @@ Install Restricted-functions with pip
 pip3 install restricted-functions
 ```
 
-If you don't have pip install you can get it like so:
+If you don't have pip installed you can get it like so:
 
 ### Linux (Debian)
 
@@ -47,7 +47,7 @@ AttributeError: module 'os' has no attribute 'system'
 
 Contributions are always welcome!
 
-If you can help closing some problems listed on _TODO.md_ or know about another dangerous function feel free to create a new function or PR  
+If you can help to close some problems listed on _TODO.md_ or know about another dangerous function feel free to create a new function or PR  
 
 ### What is restricted-functions for?
 [will add later]
