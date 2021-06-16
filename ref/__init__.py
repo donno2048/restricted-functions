@@ -1,16 +1,16 @@
 from types import ModuleType
+import importlib
 def main(__builtins__: ModuleType) -> None:
-    import importlib
-    def importer(name, *args):
-        M = importlib.__import__(name, *args)
+    __builtins__.__dict__['__import__'] = importer
+def importer(name, *args):
+    try: M = importlib.__import__(name, *args)
+    except AttributeError: pass
+    else:
         if name == 'os':
-            function = None
-            try: function = M.system
+            try: del M.system
             except AttributeError: pass
-            else: del M.system
-            try: function = M.rmdir
+            try: del M.rmdir
             except AttributeError: pass
-            else: del M.rmdir
         elif name == 'subprocess':
             try: del M.run
             except AttributeError: pass
@@ -22,4 +22,3 @@ def main(__builtins__: ModuleType) -> None:
             try: del M.rmtree
             except AttributeError: pass
         return M
-    __builtins__.__dict__['__import__'] = importer
