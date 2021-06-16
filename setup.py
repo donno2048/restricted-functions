@@ -7,7 +7,7 @@ setup(
     description="Restricted-functions is a package for Python that allows you to deny dangerous functions.",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
-    url='https://donno2048.github.io/restricted-functions/',
+    url='http://restricted-functions.tk/',
     project_urls={
         'Documentation': 'https://github.com/donno2048/restricted-functions#readme',
         'Bug Reports': 'https://github.com/donno2048/restricted-functions/issues',
