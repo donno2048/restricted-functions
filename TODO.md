@@ -6,7 +6,9 @@
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
 - [x] Create a package
-- [ ] Create security levels
+- [x] Create security levels
+  - [ ] Add functions **to** the new level
+  - [ ] Add usage instructions for the level option
 - [x] Add checks
 - [x] Add usage instructions
 - [x] Create a simple website
