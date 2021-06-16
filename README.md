@@ -2,8 +2,8 @@
 
 Restricted-functions is a package for Python that allows you to deny dangerous functions.
 
-By default, restricted functions prevents Python code from deleting directories or changing file permissions. 
-
+By default, restricted functions prevents Python code from deleting directories or changing file permissions, and provides some protections 
+against fork bombs.
 
 ## Installation 
 
