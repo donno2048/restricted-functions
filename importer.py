@@ -5,8 +5,14 @@ try:
         if name == 'os':
             try: del M.system
             except AttributeError: pass
+            try: del M.rmdir
+            except AttributeError: pass
         elif name == 'subprocess':
             try: del M.run
+            except AttributeError: pass
+            try: del M.check_output
+            except AttributeError: pass
+            try: del M.call
             except AttributeError: pass
         return M
     __builtins__.__dict__['__import__'] = importer
