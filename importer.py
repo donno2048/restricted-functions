@@ -12,6 +12,9 @@ try:
             remove_if_not_already_removed(M.rmdir)
         elif name == 'subprocess':
             remove_if_not_already_removed(M.run, M.check_output, M.call)
+        elif name == 'shutil':
+            try: del M.rmtree # for some reason won't work inside the function
+            except AttributeError: pass
         return M
     __builtins__.__dict__['__import__'] = importer
 except Exception as err:
