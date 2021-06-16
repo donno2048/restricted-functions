@@ -5,8 +5,7 @@
   - [ ] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
-- [ ] Make it work by simply importing it
-- [ ] Create a package
+- [x] Create a package
 - [ ] Create security levels
 - [ ] Add checks
 - [ ] Add usage instructions
