@@ -16,6 +16,9 @@
   - [ ] os.execve
   - [ ] os.execvp
   - [ ] os.execvpe
+  - [ ] os.forkpty
+  - [ ] os.kill
+  - [ ] os.killpg
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
