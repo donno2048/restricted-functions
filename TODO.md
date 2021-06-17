@@ -19,6 +19,7 @@
   - [ ] os.forkpty
   - [ ] os.kill
   - [ ] os.killpg
+  - [ ] os.plock
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
