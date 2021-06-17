@@ -2,7 +2,7 @@ from types import ModuleType
 import importlib
 def main(__builtins__: ModuleType, restrictwrite: bool = False) -> None:
     __builtins__.__dict__['__import__'] = importer
-def importer(name, *args, level: int = 0):
+def importer(name, *args, level: int = 0, restrictwrite: bool = False):
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level >= 0:
