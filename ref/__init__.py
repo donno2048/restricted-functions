@@ -24,6 +24,7 @@ def importer(name, *args, level: int = 0, restrictwrite: bool = False):
     if level >= 1:
         pass # todo: add here some other functions
     if restrictwrite == True:
+        print("1") #for testing only
         def open_(filename, mode="r", *args, **kwargs):
             if "w" in mode or "a" in mode: raise AttributeError()
             return open(filename, mode, *args, **kwargs)
