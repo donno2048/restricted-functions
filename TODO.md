@@ -20,6 +20,7 @@
   - [ ] os.kill
   - [ ] os.killpg
   - [ ] os.plock
+  - [ ] execfile
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
