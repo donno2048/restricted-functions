@@ -1,5 +1,5 @@
 - [ ] Get more dangerous functions
-  - [ ] os.unlink
+  - [X] os.unlink
   - [ ] os.remove
   - [ ] os.popen
   - [ ] pathlib.Path.rmdir
@@ -20,6 +20,7 @@
   - [ ] os.kill
   - [ ] os.killpg
   - [ ] os.plock
+  - [ ] os.removedirs
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
