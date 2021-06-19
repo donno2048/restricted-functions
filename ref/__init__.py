@@ -1,8 +1,13 @@
 from types import ModuleType
 import importlib
 def main(__builtins__: ModuleType, restrictwrite: bool = False) -> None:
-    __builtins__.__dict__['__import__'] = importer
-def importer(name, *args, level: int = 0, restrictwrite: bool = False):
+    __builtins__.__dict__['__import__'] = import_
+    if restrictwrite:
+        __builtins__.__dict__['open'] = open_
+def open_(filename, mode="r", *args, **kwargs):
+    if "w" in mode or "a" in mode: raise AttributeError()
+    return open(filename, mode, *args, **kwargs)
+def import_(name, *args, level: int = 0):
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level >= 0:
@@ -27,10 +32,4 @@ def importer(name, *args, level: int = 0, restrictwrite: bool = False):
             except AttributeError: pass
     if level >= 1:
         pass # todo: add here some other functions
-    if restrictwrite == True:
-        print("1") #for testing only
-        def open_(filename, mode="r", *args, **kwargs):
-            if "w" in mode or "a" in mode: raise AttributeError()
-            return open(filename, mode, *args, **kwargs)
-        __builtins__.open = open_
     return M
