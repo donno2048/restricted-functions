@@ -69,3 +69,11 @@ To use, replace the setup with:
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error.
+
+## Functions blocked
+- os.system
+- os.unlink
+- os.rmdir
+- subprocess.call
+- subprocess.run
+- subprocess.check_output
