@@ -19,6 +19,6 @@ else: raise Exception("failed")
 try: shutil.rmtree("../restricted-functions")
 except: pass
 else: raise Exception("failed")
-try: open("w", "setup.py").write("text")
+try: open("setup.py", "w").write("text")
 except: pass
 else: print("Failed to block write")
