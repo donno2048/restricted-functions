@@ -21,4 +21,4 @@ except: pass
 else: raise Exception("failed")
 try: open("w", "setup.py").write("text")
 except: pass
-else: raise Exception("failed")
+else: print("Failed to block write")
