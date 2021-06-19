@@ -1,6 +1,37 @@
+"""!
+# Usage
+
+To use this module just use the main function at the top of your code
+
+```py
+import ref
+ref.main(__builtins__)
+```
+"""
 from types import ModuleType
 import importlib
 level_, restrictwrite_ = None, None
+"""!!
+# Usage
+
+## Basic usage
+
+```py
+import ref
+ref.main(__builtins__)
+```
+
+## Additional options
+
+[[params
+  # restrictwrite allows you to prevent Python files from using open to overwrite files.
+  restrictwrite: bool | default False
+  # level allows you to choose a specific level of restriction
+  level: int | default 0
+  # There is no return value
+]] result: None
+
+"""
 def main(__builtins__: ModuleType, restrictwrite: bool = False, level: int = 0) -> None:
     global level_, restrictwrite_
     level_, restrictwrite_ = level, restrictwrite
