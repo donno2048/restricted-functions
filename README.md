@@ -56,12 +56,16 @@ This is helpful if your program must run untrusted code outside of a sandbox, or
 
 Please note that this _does not_ sandbox your code, and does not have a complete list of harmful functions. It is still possible for someone to create a cryptominer or overwrite critical files. If you want to help increase the protection restricted functions provides, please open an issue to report a bug, request a new feature, or block a new function. If you already have a solution, feel free to open a PR.
 
-### Additional options
+## Additional options
+
 - restrictwrite
-The <code>restrictwrite</code> option allows you to prevent Python files from using `open` to overwrite files.<br>
+
+The `restrictwrite` option allows you to prevent Python files from using `open` to overwrite files.
+
 To use, replace the setup with:
+
 ```python
  ref.main(__builtins__, restrictwrite = True)
 ```
-This will cause any use of `open` to overwrite or append content to files to throw an error.
 
+This will cause any use of `open` to overwrite or append content to files to throw an error.
