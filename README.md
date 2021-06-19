@@ -49,9 +49,10 @@ Contributions are always welcome!
 
 If you can help to close some problems listed on _TODO.md_ or know about another dangerous function feel free to create a new issue or PR  
 
-### What is restricted-functions for?
-Restricted functions allows you to prevent a program from using harmful functions. <br/>
-This is helpful if your program must run untrusted code outside of a sandbox, or if you want to test a Python file without harmful functions.<br/>
-Please note that this _does not_ sandbox your code, and does not have an complete list of harmful functions. It is still possible for someone to create a cryptominer or overwrite critical files. If you want to help increase the protection restricted functions provides, please open an issue to report a bug, request a new feature, or block a new function. If you already have a solution, feel free to open a PR.
+## Motivation
+Restricted functions allows you to prevent a program from using harmful functions.
 
+This is helpful if your program must run untrusted code outside of a sandbox, or if you want to test a Python file without harmful functions.
+
+Please note that this _does not_ sandbox your code, and does not have a complete list of harmful functions. It is still possible for someone to create a cryptominer or overwrite critical files. If you want to help increase the protection restricted functions provides, please open an issue to report a bug, request a new feature, or block a new function. If you already have a solution, feel free to open a PR.
 
