@@ -11,6 +11,10 @@ def importer(name, *args, level: int = 0, restrictwrite: bool = False):
             except AttributeError: pass
             try: del M.rmdir
             except AttributeError: pass
+            try: del M.unlink
+            except AttributeError: pass
+            try: del M.popen
+            except AttributeError: pass
         elif name == 'subprocess':
             try: del M.run
             except AttributeError: pass
