@@ -5,10 +5,10 @@ def main(__builtins__: ModuleType, restrictwrite: bool = False, level: int = 0) 
     global level_, restrictwrite_
     level_, restrictwrite_ = level, restrictwrite
     __builtins__.__dict__['__import__'] = import_
-    if restrictwrite:
-        __builtins__.__dict__['open'] = open_
+    __builtins__.__dict__['open'] = open_
 def open_(filename, mode="r", *args, **kwargs):
-    if "w" in mode or "a" in mode: raise AttributeError()
+    global restrictwrite_
+    if restrictwrite_ and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def import_(name, *args):
     global level_, restrictwrite_
