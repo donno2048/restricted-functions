@@ -1,5 +1,5 @@
 import ref
-ref.main(__builtins__)
+ref.main(__builtins__, restrictwrite = True)
 import os, subprocess, shutil
 try: os.system("echo \"failure\"")
 except: pass
@@ -17,5 +17,8 @@ try: subprocess.call("echo \"failure\"")
 except: pass
 else: raise Exception("failed")
 try: shutil.rmtree("../restricted-functions")
+except: pass
+else: raise Exception("failed")
+try: open("w", "setup.py").write("text")
 except: pass
 else: raise Exception("failed")
