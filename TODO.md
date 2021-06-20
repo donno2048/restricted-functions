@@ -29,13 +29,13 @@
 
 | level 0 | level 1 |
 |---|---|
-| os.popen |  |
-| os.system |  |
-| subprocess.run |  |
-| subprocess.check_output |  |
-| subprocess.call |  |
-| os.kill |  |
-| os.spawn | |
+| os.popen | os.unlink |
+| os.system | os.rmdir |
+| subprocess.run | shutil.rmtree |
+| subprocess.check_output | os.remove |
+| subprocess.call | pathlib.Path.rmdir |
+| os.kill | pathlib.Path.unlink |
+| os.spawn | os.removedirs |
 | os.execl | |
 | os.execle | |
 | os.execlp | |
@@ -45,6 +45,9 @@
 | os.execvp | |
 | os.execvpe | |
 | os.killpg | |
+| os.fork | |
+| os.forkpty | |
+| os.plock | |
 
 - [x] Create a package
 - [x] Create security levels
