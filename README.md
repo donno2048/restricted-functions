@@ -2,7 +2,6 @@
 
 [![](https://github.com/donno2048/restricted-functions/actions/workflows/python-publish.yml/badge.svg)](https://pypi.org/project/restricted-functions/)
 ![](https://github.com/donno2048/restricted-functions/actions/workflows/test.yml/badge.svg)
-![](https://github.com/donno2048/restricted-functions/actions/workflows/windows_test.yml/badge.svg)
 ![CodeQL scan](https://github.com/donno2048/restricted-functions/actions/workflows/codeql-analysis.yml/badge.svg)
 [![PyPI version](https://img.shields.io/pypi/v/restricted-functions.svg)](https://pypi.python.org/pypi/restricted-functions/)
 
