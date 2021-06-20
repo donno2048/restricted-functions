@@ -63,18 +63,16 @@ def __import(name, *args):
     except AttributeError: return __import__
     def noopFunc(*args):
         return None
+    bannedFuncs = {
+        "os":["popen","system","kill","spawn"]
+    }
     if silent == True:
         if name == "os":
-            try: del M.system
-            except AttributeError: pass
-            try: 
-                M.system = noopFunc
-            except:
-                pass
-            try: del M.popen
-            except AttributeError: pass
-            try: M.popen = noopFunc
-            except: pass
+            for bannedFunc in bannedFuncs.os:
+                try: del M[bannedFunc]
+                except AttributeError: pass
+                try: M[bannedFunc] = noopFunc
+                except: pass
     else:
         if name == 'os':
             #if it is the os module being imported
