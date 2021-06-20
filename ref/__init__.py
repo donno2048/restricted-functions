@@ -2,7 +2,7 @@
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -> None:
+def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -> None:
     """
     # Usage
 
@@ -23,17 +23,17 @@ def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: boo
 
     level: `int | default 0`
     """
-    global __level, __restrictwrite
-    __level, __restrictwrite = level, restrictwrite
+    global __level, __protectfiles
+    __level, __protectfiles = level, protectfiles
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
-    global __restrictwrite
-    if __restrictwrite and ("w" in mode or "a" in mode): raise AttributeError()
+    global __protectfiles
+    if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __level, __restrictwrite
-    level, restrictwrite = __level, __restrictwrite
+    global __level, __protectfiles
+    level, protectfiles = __level, __protectfiles
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level >= 0:
@@ -45,8 +45,6 @@ def __import(name, *args):
             try: del M.unlink
             except AttributeError: pass
             try: del M.popen
-            except AttributeError: pass
-            try: del M.remove
             except AttributeError: pass
             try: del M.kill
             except AttributeError: pass
@@ -82,6 +80,8 @@ def __import(name, *args):
             except AttributeError: pass
     if level >= 1:
         pass # todo: add here some other functions
-    if restrictwrite:
-        pass # todo: add here some other functions
+    if protectfiles:
+        if name == "os":
+            try: del M.remove
+            except AttributeError: pass
     return M
