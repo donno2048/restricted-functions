@@ -21,6 +21,16 @@
   - [ ] os.killpg
   - [ ] os.plock
   - [ ] os.removedirs
+
+| level 0 | level 1 |
+|---|---|
+| os.popen |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+
 - [x] Create a package
 - [x] Create security levels
   - [ ] Add functions **to** the new level
