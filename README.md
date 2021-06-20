@@ -80,8 +80,6 @@ ref.main(__builtins__, protectdirs = True)
 
 ## Functions blocked by default
 - os.system
-- os.unlink
-- os.rmdir
 - subprocess.call
 - subprocess.run
 - subprocess.check_output
