@@ -61,7 +61,7 @@ def __import(name, *args):
     protectfiles, protectdirs, lockperms, silent = __protectfiles, __protectdirs, __lockperms, __silent
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
-    def noopFunc():
+    def noopFunc(*args):
         return None
     if silent == True:
         try: del M.system
