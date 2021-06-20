@@ -1,5 +1,9 @@
 # Restricted-functions
 
+[![](https://github.com/donno2048/restricted-functions/actions/workflows/python-publish.yml/badge.svg)](https://pypi.org/project/restricted-functions/)
+![](https://github.com/donno2048/restricted-functions/actions/workflows/test.yml/badge.svg)
+![](https://github.com/donno2048/restricted-functions/actions/workflows/windows_test.yml/badge.svg)
+
 Restricted-functions is a package for Python that allows you to deny dangerous functions.
 
 By default, restricted functions prevents Python code executing command line commands, and provides some protections 
