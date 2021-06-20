@@ -1,8 +1,8 @@
-"""To use this module just use the main function at the top of your code """
+"""To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, restrictwrite: bool = False, level: int = 0) -> None:
+def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, blockdelete: bool = False, level: int = 0) -> None:
     """
     # Usage
 
