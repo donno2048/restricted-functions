@@ -44,7 +44,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__,lockperms = True)
+    ref.main(__builtins__, lockperms = True)
     ```
     
     """
