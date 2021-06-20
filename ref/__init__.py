@@ -80,5 +80,5 @@ def __import(name, *args):
         if name == mod:
             for method in __restrict[mod]:
                 try: del M.__dict__[method]
-                except AttributeError: pass
+                except (AttributeError, KeyError): pass
     return M
