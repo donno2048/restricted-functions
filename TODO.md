@@ -1,7 +1,13 @@
 - [ ] Get more dangerous functions
   - [X] os.unlink
+  - [x] os.system
+  - [x] os.rmdir
+  - [x] os.popen
+  - [x] subprocess.run
+  - [x] subprocess.check_output
+  - [x] subprocess.call
+  - [x] shutil.rmtree
   - [ ] os.remove
-  - [ ] os.popen
   - [ ] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
@@ -25,10 +31,10 @@
 | level 0 | level 1 |
 |---|---|
 | os.popen |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| os.system |  |
+| subprocess.run |  |
+| subprocess.check_output |  |
+| subprocess.call |  |
 |  |  |
 
 - [x] Create a package
