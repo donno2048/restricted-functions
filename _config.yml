@@ -1,4 +1,5 @@
 title: Restricted functions
+markdown: kramdown
 subtitle: Restricted-functions is a package for Python that allows you to deny dangerous functions.
 gh-repo: donno2048/restricted-functions
 gh-badge: star
