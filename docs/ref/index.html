@@ -132,8 +132,6 @@ def __import(name, *args):
             except AttributeError: pass
     if protectdirs:
         if name == &#39;os&#39;:
-            try: del M.unlink
-            except AttributeError: pass
             try: del M.rmdir
             except AttributeError: pass
             try: del M.removedirs
