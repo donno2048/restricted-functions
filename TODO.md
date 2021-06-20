@@ -7,23 +7,23 @@
   - [x] subprocess.check_output
   - [x] subprocess.call
   - [x] shutil.rmtree
-  - [ ] os.remove
+  - [x] os.remove
   - [ ] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
   - [ ] pathlib.Path.unlink
   - [ ] os.fork
-  - [ ] os.kill
-  - [ ] os.spawn
-  - [ ] os.execl
-  - [ ] os.execle
-  - [ ] os.execlp
-  - [ ] os.execlpe
-  - [ ] os.execv
-  - [ ] os.execve
-  - [ ] os.execvp
-  - [ ] os.execvpe
+  - [x] os.kill
+  - [x] os.spawn
+  - [x] os.execl
+  - [x] os.execle
+  - [x] os.execlp
+  - [x] os.execlpe
+  - [x] os.execv
+  - [x] os.execve
+  - [x] os.execvp
+  - [x] os.execvpe
   - [ ] os.forkpty
-  - [ ] os.killpg
+  - [x] os.killpg
   - [ ] os.plock
   - [ ] os.removedirs
 
