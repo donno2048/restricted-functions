@@ -49,7 +49,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     
     """
     global __protectfiles, __protectdirs, __lockperms, __silent
-    __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
+    __protectfiles, __protectdirs, __lockperms, __silent = protectfiles, protectdirs, lockperms, silent
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
@@ -58,7 +58,7 @@ def __open(filename, mode="r", *args, **kwargs):
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
     global __protectfiles, __protectdirs
-    protectfiles, protectdirs, lockperms = __protectfiles, __protectdirs, __lockperms
+    protectfiles, protectdirs, lockperms, silent = __protectfiles, __protectdirs, __lockperms, __silent
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if name == 'os':
