@@ -50,13 +50,17 @@ ref.main(__builtins__)
 
 ###### Additional options
 
- - <code>restrictwrite</code> allows you to prevent Python files from using open to overwrite files.
+ - <code>protectfiles</code> allows you to prevent Python from changing files.
 
-restrictwrite: `bool | default False`
+protectfiles: `bool | default False`
 
  - <code>level</code> allows you to choose a specific level of restriction
 
 level: `int | default 0`
+
+ - <code>protectdirs</code> allows you to prevent Python from deleting directories.
+
+protectdirs: `bool | default False`
 
 
 

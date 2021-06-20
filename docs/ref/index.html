@@ -44,13 +44,18 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
 
     ## Additional options
 
-     - `restrictwrite` allows you to prevent Python files from using open to overwrite files.
+     - `protectfiles` allows you to prevent Python from changing files.
 
-    restrictwrite: `bool | default False`
+    protectfiles: `bool | default False`
 
      - `level` allows you to choose a specific level of restriction
 
     level: `int | default 0`
+    
+     - `protectdirs` allows you to prevent Python from deleting directories.
+
+    protectdirs: `bool | default False`
+    
     &#34;&#34;&#34;
     global __level, __protectfiles, __protectdirs
     __level, __protectfiles, __protectdirs = level, protectfiles, protectdirs
@@ -152,13 +157,17 @@ ref.main(__builtins__)
 </code></pre>
 <h2 id="additional-options">Additional options</h2>
 <ul>
-<li><code>restrictwrite</code> allows you to prevent Python files from using open to overwrite files.</li>
+<li><code>protectfiles</code> allows you to prevent Python from changing files.</li>
 </ul>
-<p>restrictwrite: <code>bool | default False</code></p>
+<p>protectfiles: <code>bool | default False</code></p>
 <ul>
 <li><code>level</code> allows you to choose a specific level of restriction</li>
 </ul>
-<p>level: <code>int | default 0</code></p></div>
+<p>level: <code>int | default 0</code></p>
+<ul>
+<li><code>protectdirs</code> allows you to prevent Python from deleting directories.</li>
+</ul>
+<p>protectdirs: <code>bool | default False</code></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -176,13 +185,18 @@ ref.main(__builtins__)
 
     ## Additional options
 
-     - `restrictwrite` allows you to prevent Python files from using open to overwrite files.
+     - `protectfiles` allows you to prevent Python from changing files.
 
-    restrictwrite: `bool | default False`
+    protectfiles: `bool | default False`
 
      - `level` allows you to choose a specific level of restriction
 
     level: `int | default 0`
+    
+     - `protectdirs` allows you to prevent Python from deleting directories.
+
+    protectdirs: `bool | default False`
+    
     &#34;&#34;&#34;
     global __level, __protectfiles, __protectdirs
     __level, __protectfiles, __protectdirs = level, protectfiles, protectdirs
