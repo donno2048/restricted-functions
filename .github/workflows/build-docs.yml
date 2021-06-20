@@ -16,7 +16,7 @@ jobs:
         pip install .
     - name: Build
       run: |
-        pdoc --html -f ref -o .
+        pdoc --html -f ref -o ..
     - uses: EndBug/add-and-commit@v7.2.1
       with:
         author_name: donno2048
