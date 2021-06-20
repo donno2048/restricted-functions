@@ -80,10 +80,25 @@ ref.main(__builtins__, protectdirs = True)
 ```
 
 ## Functions blocked by default
+- os.popen
 - os.system
-- subprocess.call
 - subprocess.run
 - subprocess.check_output
+- subprocess.call
+- os.kill
+- os.spawn
+- os.execl
+- os.execle
+- os.execlp
+- os.execlpe
+- os.execv
+- os.execve
+- os.execvp
+- os.execvpe
+- os.killpg
+- os.fork
+- os.forkpty
+- os.plock
 
 ## Documentation
 
