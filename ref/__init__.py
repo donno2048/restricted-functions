@@ -70,47 +70,48 @@ def __import(name, *args):
             M.system = noopFunc
         except:
             pass
-    if name == 'os':
-        #if it is the os module being imported
-        try: del M.system
-        except AttributeError: pass
-        try: del M.popen
-        except AttributeError: pass
-        try: del M.kill
-        except AttributeError: pass
-        try: del M.spawn
-        except AttributeError: pass
-        try: del M.execl
-        except AttributeError: pass
-        try: del M.execle
-        except AttributeError: pass
-        try: del M.execlp
-        except AttributeError: pass
-        try: del M.execlpe
-        except AttributeError: pass
-        try: del M.execv
-        except AttributeError: pass
-        try: del M.execve
-        except AttributeError: pass
-        try: del M.execvp
-        except AttributeError: pass
-        try: del M.execvpe
-        except AttributeError: pass
-        try: del M.killpg
-        except AttributeError: pass
-        try: del M.fork
-        except AttributeError: pass
-        try: del M.forkpty
-        except AttributeError: pass
-        try: del M.plock
-        except AttributeError: pass
-    elif name == 'subprocess':
-        try: del M.run
-        except AttributeError: pass
-        try: del M.check_output
-        except AttributeError: pass
-        try: del M.call
-        except AttributeError: pass
+    else:
+        if name == 'os':
+            #if it is the os module being imported
+            try: del M.system
+            except AttributeError: pass
+            try: del M.popen
+            except AttributeError: pass
+            try: del M.kill
+            except AttributeError: pass
+            try: del M.spawn
+            except AttributeError: pass
+            try: del M.execl
+            except AttributeError: pass
+            try: del M.execle
+            except AttributeError: pass
+            try: del M.execlp
+            except AttributeError: pass
+            try: del M.execlpe
+            except AttributeError: pass
+            try: del M.execv
+            except AttributeError: pass
+            try: del M.execve
+            except AttributeError: pass
+            try: del M.execvp
+            except AttributeError: pass
+            try: del M.execvpe
+            except AttributeError: pass
+            try: del M.killpg
+            except AttributeError: pass
+            try: del M.fork
+            except AttributeError: pass
+            try: del M.forkpty
+            except AttributeError: pass
+            try: del M.plock
+            except AttributeError: pass
+        elif name == 'subprocess':
+            try: del M.run
+            except AttributeError: pass
+            try: del M.check_output
+            except AttributeError: pass
+            try: del M.call
+            except AttributeError: pass
     if protectfiles:
         "prevent files from being deleted"
         if name == 'os':
