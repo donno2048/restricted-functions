@@ -122,7 +122,7 @@ def __import(name, *args):
         try: del M.call
         except AttributeError: pass
     if protectfiles:
-        #if file deletion/modification is blocked, block these functions
+        &#34;prevent files from being deleted&#34;
         if name == &#39;os&#39;:
             try: del M.remove
             except AttributeError: pass
@@ -132,6 +132,7 @@ def __import(name, *args):
             try: del M.unlink
             except AttributeError: pass
     if protectdirs:
+        &#34;prevent dirs from being deleted&#34;
         if name == &#39;os&#39;:
             try: del M.rmdir
             except AttributeError: pass
@@ -144,11 +145,12 @@ def __import(name, *args):
             try: del M.rmdir
             except AttributeError: pass
     if lockperms:
+        &#34;Prevent chmod from being used&#34;
         if name == &#39;os&#39;:
             try: del M.chmod
             except AttributeError: pass
-        elif name == &#34;pathlib&#34;:
-            try: del M.path.chmod
+        elif name == &#34;pathlib.Path&#34;:
+            try: del M.chmod
             except AttributeError: pass
     return M</code></pre>
 </details>
