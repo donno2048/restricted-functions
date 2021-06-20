@@ -33,8 +33,8 @@ To use this module just use the main function at the top of your code
 
 >     def main(
 >         __builtins__: module,
->         protectdirs: bool = False,
 >         protectfiles: bool = False,
+>         protectdirs: bool = False,
 >         level: int = 0
 >     ) ‑> NoneType
 
