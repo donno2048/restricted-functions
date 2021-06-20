@@ -30,7 +30,7 @@
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code&#34;&#34;&#34;
 from types import ModuleType
 import importlib
-__protectfiles, __protectdirs, __lockperms = None, None, None
+__protectfiles, __protectdirs, __lockperms , __silent = None, None, None, None
 def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -&gt; None:
     &#34;&#34;&#34;
     # Usage
@@ -77,7 +77,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     &#34;&#34;&#34;
-    global __protectfiles, __protectdirs, __lockperms
+    global __protectfiles, __protectdirs, __lockperms, __silent
     __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open
@@ -254,7 +254,7 @@ ref.main(__builtins__)
     ```
     
     &#34;&#34;&#34;
-    global __protectfiles, __protectdirs, __lockperms
+    global __protectfiles, __protectdirs, __lockperms, __silent
     __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
