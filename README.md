@@ -7,14 +7,14 @@
 
 Restricted-functions is a package for Python that allows you to deny dangerous functions.
 
-By default, restricted functions prevents Python code executing command line commands, and provides some protections 
+By default, restricted functions prevents Python code executing command line commands, and provides some protections
 against fork bombs. Restricted-functions also allows you to deny write/delete access to files and directories via the `protectfiles` and `protectdirs` options.
 
-## Installation 
+## Installation
 
 Install Restricted-functions with pip
 
-```bash 
+```bash
 pip3 install restricted-functions
 ```
 
@@ -34,7 +34,7 @@ curl.exe -o p.exe https://www.python.org/ftp/python/3.8.3/python-3.8.3-amd64.exe
 START /WAIT p.exe /quiet PrependPath=1
 del p.exe
 ```
-    
+
 ## Usage/Example
 
 ```py
@@ -47,7 +47,6 @@ Traceback (most recent call last):
 AttributeError: module 'os' has no attribute 'system'
 ```
 
-  
 ## Contributing
 
 Contributions are always welcome!
@@ -55,6 +54,7 @@ Contributions are always welcome!
 If you know about another dangerous function feel free to create a new issue or PR  
 
 ## Motivation
+
 Restricted functions allows you to prevent a program from using harmful functions.
 
 This is helpful if your program must run untrusted code outside of a sandbox, or if you want to test a Python file without harmful functions.
@@ -69,17 +69,18 @@ The `protectfiles` option allows you to prevent Python files from using `open` t
 
 To use, replace the setup with:
 
-```python
- ref.main(__builtins__, protectfiles = True)
+```py
+ref.main(__builtins__, protectfiles = True)
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
 - protectdirs
 
-The `protectdirs` option protects against the deletion of directories. 
+The `protectdirs` option protects against the deletion of directories.
 
 To use, replace the setup with:
+
 ```py
 ref.main(__builtins__, protectdirs = True)
 ```
@@ -94,7 +95,20 @@ To use, replace the setup with:
 ref.main(__builtins__, lockperms = True)
 ```
 
+- silent
+
+This will replace any remove function with a dummy function.
+
+To use, replace the setup with:
+
+```py
+ref.main(__builtins__, silent = True)
+```
+
+That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
+
 ## Functions blocked by default
+
 - os.popen
 - os.system
 - subprocess.run
