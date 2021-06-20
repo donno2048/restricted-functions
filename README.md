@@ -136,5 +136,4 @@ FUNCTIONS
          - `level` allows you to choose a specific level of restriction
 
         level: `int | default 0`
-
 ```
