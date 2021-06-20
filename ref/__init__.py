@@ -1,7 +1,7 @@
 """To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-__protectfiles, __protectdirs = None, None
+__protectfiles, __protectdirs, _lockperms = None, None,None
 def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
     """
     # Usage
@@ -38,8 +38,8 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     """
-    global __protectfiles, __protectdirs
-    __protectfiles, __protectdirs = protectfiles, protectdirs
+    global __protectfiles, __protectdirs, _lockperms
+    __protectfiles, __protectdirs,_lockperms = protectfiles, protectdirs, lockperms
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
@@ -48,7 +48,7 @@ def __open(filename, mode="r", *args, **kwargs):
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
     global __protectfiles, __protectdirs
-    protectfiles, protectdirs = __protectfiles, __protectdirs
+    protectfiles, protectdirs = __protectfiles, __protectdirs, _lockperms
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if name == 'os':
