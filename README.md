@@ -102,7 +102,7 @@ ref.main(__builtins__, protectdirs = True)
 
 ## Documentation
 
-Better docs can be found under <a href="https://github.com/donno2048/restricted-functions/tree/master/docs/ref" target="_blank">the _docs/ref_ folder</a>, but you can use:
+Better docs can be found under [the _docs/ref_ folder](https://github.com/donno2048/restricted-functions/tree/master/docs/ref), but you can use:
 
 ```py
 >>> import ref
