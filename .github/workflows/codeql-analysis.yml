@@ -1,0 +1,15 @@
+name: CodeQL
+on: push
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v2
+    - uses: github/codeql-action/init@v1
+      with:
+        languages: python
+    - uses: github/codeql-action/autobuild@v1
+    - uses: github/codeql-action/analyze@v1
