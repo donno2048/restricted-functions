@@ -1,14 +1,14 @@
 """To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-__protectfiles = None
+__protectfiles, __silent = None, None
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
     "subprocess": ["run", "check_output", "call"],
     "pathlib.Path": [],
     "shutil": []
 }
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -> None:
     """
     # Usage
 
@@ -54,8 +54,8 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     """
-    global __protectfiles, __restrict
-    __protectfiles = protectfiles
+    global __protectfiles, __restrict, __silent
+    __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict["os"].extend(["remove", "unlink"])
         __restrict["pathlib.Path"].append("unlink")
@@ -73,12 +73,14 @@ def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __restrict
+    global __restrict, __silent
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     for mod in __restrict:
         if name == mod:
             for method in __restrict[mod]:
-                try: del M.__dict__[method]
+                try:
+                    if __silent: M.__dict__[method] = lambda:None
+                    else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
