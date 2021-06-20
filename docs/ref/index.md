@@ -35,7 +35,8 @@ To use this module just use the main function at the top of your code
 >         __builtins__: module,
 >         protectfiles: bool = False,
 >         protectdirs: bool = False,
->         lockperms: bool = False
+>         lockperms: bool = False,
+>         silent: bool = False
 >     ) ‑> NoneType
 
 
