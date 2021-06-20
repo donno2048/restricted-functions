@@ -64,12 +64,17 @@ def __import(name, *args):
     def noopFunc(*args):
         return None
     if silent == True:
-        try: del M.system
-        except AttributeError: pass
-        try: 
-            M.system = noopFunc
-        except:
-            pass
+        if name == "os":
+            try: del M.system
+            except AttributeError: pass
+            try: 
+                M.system = noopFunc
+            except:
+                pass
+            try: del M.popen
+            except AttributeError: pass
+            try: M.popen = noopFunc
+            except: pass
     else:
         if name == 'os':
             #if it is the os module being imported
