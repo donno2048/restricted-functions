@@ -109,7 +109,7 @@ def __import(name, *args):
         if name == mod:
             for method in __restrict[mod]:
                 try:
-                    if __silent: M.__dict__[method] = lambda:None
+                    if __silent: M.__dict__[method] = lambda *_:None
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M</code></pre>
