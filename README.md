@@ -58,19 +58,19 @@ Please note that this _does not_ sandbox your code, and does not have a complete
 
 ## Additional options
 
-- restrictwrite
+- protectfiles
 
-The `restrictwrite` option allows you to prevent Python files from using `open` to overwrite files.
+The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
 
 To use, replace the setup with:
 
 ```python
- ref.main(__builtins__, restrictwrite = True)
+ ref.main(__builtins__, protectfiles = True)
 ```
 
-This will cause any use of `open` to overwrite or append content to files to throw an error.
+This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
-## Functions blocked
+## Functions blocked by default
 - os.system
 - os.unlink
 - os.rmdir
