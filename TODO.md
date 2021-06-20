@@ -51,8 +51,6 @@
 
 - [x] Create a package
 - [x] Create security levels
-  - [ ] Add functions **to** the new level
-  - [ ] Add usage instructions for the level option
 - [x] Add checks
 - [x] Add usage instructions
 - [x] Create a simple website
