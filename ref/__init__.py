@@ -53,6 +53,7 @@ def __import(name, *args):
     except AttributeError: return __import__
     if level >= 0:
         if name == 'os':
+            #if it is the os module being imported
             try: del M.system
             except AttributeError: pass
             try: del M.popen
@@ -93,6 +94,7 @@ def __import(name, *args):
             try: del M.call
             except AttributeError: pass
     if protectfiles:
+        #if file deletion/modification is blocked, block these functions
         if name == 'os':
             try: del M.remove
             except AttributeError: pass
