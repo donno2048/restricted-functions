@@ -41,20 +41,30 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     import ref
     ref.main(__builtins__)
     ```
-
-    ## Additional options
-
-     - `protectfiles` allows you to prevent Python from changing files.
-
-    protectfiles: `bool | default False`
-
-     - `level` allows you to choose a specific level of restriction
-
-    level: `int | default 0`
     
-     - `protectdirs` allows you to prevent Python from deleting directories.
-
-    protectdirs: `bool | default False`
+    ## Additional options
+    
+    - protectfiles
+    
+    The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, protectfiles = True)
+    ```
+    
+    This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
+    
+    - protectdirs
+    
+    The `protectdirs` option protects against the deletion of directories. 
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, protectdirs = True)
+    ```
     
     &#34;&#34;&#34;
     global __level, __protectfiles, __protectdirs
@@ -157,17 +167,20 @@ ref.main(__builtins__)
 </code></pre>
 <h2 id="additional-options">Additional options</h2>
 <ul>
-<li><code>protectfiles</code> allows you to prevent Python from changing files.</li>
+<li>protectfiles</li>
 </ul>
-<p>protectfiles: <code>bool | default False</code></p>
+<p>The <code>protectfiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
+<p>To use, replace the setup with:</p>
+<pre><code class="language-py">ref.main(__builtins__, protectfiles = True)
+</code></pre>
+<p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
 <ul>
-<li><code>level</code> allows you to choose a specific level of restriction</li>
+<li>protectdirs</li>
 </ul>
-<p>level: <code>int | default 0</code></p>
-<ul>
-<li><code>protectdirs</code> allows you to prevent Python from deleting directories.</li>
-</ul>
-<p>protectdirs: <code>bool | default False</code></p></div>
+<p>The <code>protectdirs</code> option protects against the deletion of directories. </p>
+<p>To use, replace the setup with:</p>
+<pre><code class="language-py">ref.main(__builtins__, protectdirs = True)
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -182,20 +195,30 @@ ref.main(__builtins__)
     import ref
     ref.main(__builtins__)
     ```
-
-    ## Additional options
-
-     - `protectfiles` allows you to prevent Python from changing files.
-
-    protectfiles: `bool | default False`
-
-     - `level` allows you to choose a specific level of restriction
-
-    level: `int | default 0`
     
-     - `protectdirs` allows you to prevent Python from deleting directories.
-
-    protectdirs: `bool | default False`
+    ## Additional options
+    
+    - protectfiles
+    
+    The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, protectfiles = True)
+    ```
+    
+    This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
+    
+    - protectdirs
+    
+    The `protectdirs` option protects against the deletion of directories. 
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, protectdirs = True)
+    ```
     
     &#34;&#34;&#34;
     global __level, __protectfiles, __protectdirs
