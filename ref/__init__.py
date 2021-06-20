@@ -35,7 +35,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     
     - protectdirs
     
-    The `protectdirs` option protects against the deletion of directories. 
+    The `protectdirs` option protects against the deletion of directories.
     
     To use, replace the setup with:
     
@@ -44,7 +44,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     - lockperms
-
+    
     This will prevent use of chmod in that Python file.
     
     To use, replace the setup with:
@@ -52,6 +52,18 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```py
     ref.main(__builtins__, lockperms = True)
     ```
+    
+    - silent
+    
+    This will replace any remove function with a dummy function.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, silent = True)
+    ```
+    
+    That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
     
     """
     global __protectfiles, __restrict, __silent
