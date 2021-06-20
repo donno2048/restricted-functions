@@ -1,5 +1,9 @@
 # Restricted-functions
 
+[![](https://github.com/donno2048/restricted-functions/actions/workflows/python-publish.yml/badge.svg)](https://pypi.org/project/restricted-functions/)
+![](https://github.com/donno2048/restricted-functions/actions/workflows/test.yml/badge.svg)
+![](https://github.com/donno2048/restricted-functions/actions/workflows/windows_test.yml/badge.svg)
+
 Restricted-functions is a package for Python that allows you to deny dangerous functions.
 
 By default, restricted functions prevents Python code executing command line commands, and provides some protections 
@@ -47,7 +51,7 @@ AttributeError: module 'os' has no attribute 'system'
 
 Contributions are always welcome!
 
-If you can help to close some problems listed on _TODO.md_ or know about another dangerous function feel free to create a new issue or PR  
+If you know about another dangerous function feel free to create a new issue or PR  
 
 ## Motivation
 Restricted functions allows you to prevent a program from using harmful functions.
