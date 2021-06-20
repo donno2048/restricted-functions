@@ -18,7 +18,7 @@ jobs:
       run: |
         pdoc --html ref -f -o docs
         pdoc ref --pdf | sed "s/\.\.\./---/" > docs/ref/index.md
-        cat README.md | sed "s/\/ref\)/\/ref\){:target=\"_blank\" rel=\"noopener\"}/" > index.md
+        cat README.md | sed "s/\/ref)/\/ref){:target=\"_blank\" rel=\"noopener\"}/" > index.md
     - uses: EndBug/add-and-commit@v7.2.1
       with:
         author_name: donno2048
