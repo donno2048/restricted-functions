@@ -115,6 +115,4 @@ def __import(name, *args):
         elif name == 'pathlib.Path':
             try: del M.rmdir
             except AttributeError: pass
-            try: del M.unlink
-            except AttributeError: pass
     return M
