@@ -2,7 +2,7 @@
 from types import ModuleType
 import importlib
 __protectfiles, __protectdirs, __lockperms = None, None, None
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -> None:
     """
     # Usage
 
