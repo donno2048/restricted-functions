@@ -2,7 +2,7 @@
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, blockdelete: bool = False, level: int = 0) -> None:
+def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -> None:
     """
     # Usage
 
