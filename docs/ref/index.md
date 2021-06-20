@@ -34,7 +34,8 @@ To use this module just use the main function at the top of your code
 >     def main(
 >         __builtins__: module,
 >         protectfiles: bool = False,
->         protectdirs: bool = False
+>         protectdirs: bool = False,
+>         lockperms: bool = False
 >     ) ‑> NoneType
 
 

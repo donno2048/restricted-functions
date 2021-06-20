@@ -31,7 +31,7 @@
 from types import ModuleType
 import importlib
 __protectfiles, __protectdirs = None, None
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False) -&gt; None:
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -143,6 +143,13 @@ def __import(name, *args):
         elif name == &#39;pathlib.Path&#39;:
             try: del M.rmdir
             except AttributeError: pass
+    if lockperms:
+        if name == &#39;os&#39;:
+            try: del M.chmod
+            except AttributeError: pass
+        elif name == &#34;pathlib&#34;:
+            try: del M.path.chmod
+            except AttributeError: pass
     return M</code></pre>
 </details>
 </section>
@@ -154,7 +161,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -182,7 +189,7 @@ ref.main(__builtins__)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
