@@ -1,8 +1,8 @@
 """To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-__level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -> None:
+__level, __protectfiles, __protectdirs = None, None, None
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, level: int = 0) -> None:
     """
     # Usage
 
@@ -23,8 +23,8 @@ def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool
 
     level: `int | default 0`
     """
-    global __level, __protectfiles
-    __level, __protectfiles = level, protectfiles
+    global __level, __protectfiles, __protectdirs
+    __level, __protectfiles, __protectdirs = level, protectfiles, protectdirs
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
@@ -32,17 +32,13 @@ def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __level, __protectfiles
-    level, protectfiles = __level, __protectfiles
+    global __level, __protectfiles, __protectdirs
+    level, protectfiles, protectdirs = __level, __protectfiles, __protectdirs
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level >= 0:
         if name == 'os':
             try: del M.system
-            except AttributeError: pass
-            try: del M.rmdir
-            except AttributeError: pass
-            try: del M.unlink
             except AttributeError: pass
             try: del M.popen
             except AttributeError: pass
@@ -68,6 +64,12 @@ def __import(name, *args):
             except AttributeError: pass
             try: del M.killpg
             except AttributeError: pass
+            try: del M.fork
+            except AttributeError: pass
+            try: del M.forkpty
+            except AttributeError: pass
+            try: del M.plock
+            except AttributeError: pass
         elif name == 'subprocess':
             try: del M.run
             except AttributeError: pass
@@ -75,13 +77,29 @@ def __import(name, *args):
             except AttributeError: pass
             try: del M.call
             except AttributeError: pass
+    if protectfiles:
+        if name == 'os':
+            try: del M.remove
+            except AttributeError: pass
+            try: del M.unlink
+            except AttributeError: pass
+        elif name == 'pathlib.Path':
+            try: del M.unlink
+            except AttributeError: pass
+    if protectdirs:
+        if name == 'os':
+            try: del M.unlink
+            except AttributeError: pass
+            try: del M.rmdir
+            except AttributeError: pass
+            try: del M.removedirs
+            except AttributeError: pass
         elif name == 'shutil':
             try: del M.rmtree
             except AttributeError: pass
-    if level >= 1:
-        pass # todo: add here some other functions
-    if protectfiles:
-        if name == "os":
-            try: del M.remove
+        elif name == 'pathlib.Path':
+            try: del M.rmdir
+            except AttributeError: pass
+            try: del M.unlink
             except AttributeError: pass
     return M
