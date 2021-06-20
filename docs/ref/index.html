@@ -30,8 +30,8 @@
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code&#34;&#34;&#34;
 from types import ModuleType
 import importlib
-__level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
+__level, __protectfiles, __protectdirs = None, None, None
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -52,8 +52,8 @@ def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool
 
     level: `int | default 0`
     &#34;&#34;&#34;
-    global __level, __protectfiles
-    __level, __protectfiles = level, protectfiles
+    global __level, __protectfiles, __protectdirs
+    __level, __protectfiles, __protectdirs = level, protectfiles, protectdirs
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open
 def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
@@ -61,17 +61,13 @@ def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
     if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __level, __protectfiles
-    level, protectfiles = __level, __protectfiles
+    global __level, __protectfiles, __protectdirs
+    level, protectfiles, protectdirs = __level, __protectfiles, __protectdirs
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level &gt;= 0:
         if name == &#39;os&#39;:
             try: del M.system
-            except AttributeError: pass
-            try: del M.rmdir
-            except AttributeError: pass
-            try: del M.unlink
             except AttributeError: pass
             try: del M.popen
             except AttributeError: pass
@@ -97,6 +93,12 @@ def __import(name, *args):
             except AttributeError: pass
             try: del M.killpg
             except AttributeError: pass
+            try: del M.fork
+            except AttributeError: pass
+            try: del M.forkpty
+            except AttributeError: pass
+            try: del M.plock
+            except AttributeError: pass
         elif name == &#39;subprocess&#39;:
             try: del M.run
             except AttributeError: pass
@@ -104,14 +106,30 @@ def __import(name, *args):
             except AttributeError: pass
             try: del M.call
             except AttributeError: pass
+    if protectfiles:
+        if name == &#39;os&#39;:
+            try: del M.remove
+            except AttributeError: pass
+            try: del M.unlink
+            except AttributeError: pass
+        elif name == &#39;pathlib.Path&#39;:
+            try: del M.unlink
+            except AttributeError: pass
+    if protectdirs:
+        if name == &#39;os&#39;:
+            try: del M.unlink
+            except AttributeError: pass
+            try: del M.rmdir
+            except AttributeError: pass
+            try: del M.removedirs
+            except AttributeError: pass
         elif name == &#39;shutil&#39;:
             try: del M.rmtree
             except AttributeError: pass
-    if level &gt;= 1:
-        pass # todo: add here some other functions
-    if protectfiles:
-        if name == &#34;os&#34;:
-            try: del M.remove
+        elif name == &#39;pathlib.Path&#39;:
+            try: del M.rmdir
+            except AttributeError: pass
+            try: del M.unlink
             except AttributeError: pass
     return M</code></pre>
 </details>
@@ -124,7 +142,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False, level: int = 0) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -145,7 +163,7 @@ ref.main(__builtins__)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -166,8 +184,8 @@ ref.main(__builtins__)
 
     level: `int | default 0`
     &#34;&#34;&#34;
-    global __level, __protectfiles
-    __level, __protectfiles = level, protectfiles
+    global __level, __protectfiles, __protectdirs
+    __level, __protectfiles, __protectdirs = level, protectfiles, protectdirs
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
 </details>
