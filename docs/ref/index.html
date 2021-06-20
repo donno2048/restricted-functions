@@ -31,7 +31,7 @@
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
+def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -52,17 +52,17 @@ def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: boo
 
     level: `int | default 0`
     &#34;&#34;&#34;
-    global __level, __restrictwrite
-    __level, __restrictwrite = level, restrictwrite
+    global __level, __protectfiles
+    __level, __protectfiles = level, protectfiles
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open
 def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
-    global __restrictwrite
-    if __restrictwrite and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
+    global __protectfiles
+    if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __level, __restrictwrite
-    level, restrictwrite = __level, __restrictwrite
+    global __level, __protectfiles
+    level, protectfiles = __level, __protectfiles
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level &gt;= 0:
@@ -74,8 +74,6 @@ def __import(name, *args):
             try: del M.unlink
             except AttributeError: pass
             try: del M.popen
-            except AttributeError: pass
-            try: del M.remove
             except AttributeError: pass
             try: del M.kill
             except AttributeError: pass
@@ -111,8 +109,10 @@ def __import(name, *args):
             except AttributeError: pass
     if level &gt;= 1:
         pass # todo: add here some other functions
-    if restrictwrite:
-        pass # todo: add here some other functions
+    if protectfiles:
+        if name == &#34;os&#34;:
+            try: del M.remove
+            except AttributeError: pass
     return M</code></pre>
 </details>
 </section>
@@ -124,7 +124,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -145,7 +145,7 @@ ref.main(__builtins__)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -166,8 +166,8 @@ ref.main(__builtins__)
 
     level: `int | default 0`
     &#34;&#34;&#34;
-    global __level, __restrictwrite
-    __level, __restrictwrite = level, restrictwrite
+    global __level, __protectfiles
+    __level, __protectfiles = level, protectfiles
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
 </details>
