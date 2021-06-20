@@ -47,7 +47,7 @@ AttributeError: module 'os' has no attribute 'system'
 
 Contributions are always welcome!
 
-If you can help to close some problems listed on _TODO.md_ or know about another dangerous function feel free to create a new issue or PR  
+If you know about another dangerous function feel free to create a new issue or PR  
 
 ## Motivation
 Restricted functions allows you to prevent a program from using harmful functions.
