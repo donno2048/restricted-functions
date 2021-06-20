@@ -35,7 +35,7 @@ To use this module just use the main function at the top of your code
 >         __builtins__: module,
 >         restrictwrite: bool = False,
 >         protectdirs: bool = False,
->         blockdelete: bool = False,
+>         protectfiles: bool = False,
 >         level: int = 0
 >     ) ‑> NoneType
 

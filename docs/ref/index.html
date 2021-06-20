@@ -31,7 +31,7 @@
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
-def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, blockdelete: bool = False, level: int = 0) -&gt; None:
+def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -124,7 +124,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, restrictwrite: bool = False, protectdirs: bool = False, blockdelete: bool = False, level: int = 0) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -145,7 +145,7 @@ ref.main(__builtins__)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, blockdelete: bool = False, level: int = 0) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, restrictwrite: bool = False, protectdirs: bool = False, protectfiles: bool = False, level: int = 0) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
