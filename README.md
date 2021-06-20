@@ -84,8 +84,11 @@ ref.main(__builtins__, protectdirs = True)
 ```
 
 - lockperms
+
 This will prevent use of chmod in that Python file.
+
 To use, replace the setup with:
+
 ```py
 ref.main(__builtins__,lockperms = True)
 ```
