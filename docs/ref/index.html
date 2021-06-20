@@ -30,14 +30,14 @@
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code&#34;&#34;&#34;
 from types import ModuleType
 import importlib
-__protectfiles = None
+__protectfiles, __silent = None, None
 __restrict = {
     &#34;os&#34;: [&#34;system&#34;, &#34;popen&#34;, &#34;kill&#34;, &#34;spawn&#34;, &#34;execl&#34;, &#34;execle&#34;, &#34;execlp&#34;, &#34;execlpe&#34;, &#34;execv&#34;, &#34;execve&#34;, &#34;execvp&#34;, &#34;execvpe&#34;, &#34;killpg&#34;, &#34;fork&#34;, &#34;forkpty&#34;, &#34;plock&#34;],
     &#34;subprocess&#34;: [&#34;run&#34;, &#34;check_output&#34;, &#34;call&#34;],
     &#34;pathlib.Path&#34;: [],
     &#34;shutil&#34;: []
 }
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -&gt; None:
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -83,8 +83,8 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     &#34;&#34;&#34;
-    global __protectfiles, __restrict
-    __protectfiles = protectfiles
+    global __protectfiles, __restrict, __silent
+    __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
@@ -102,13 +102,15 @@ def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
     if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __restrict
+    global __restrict, __silent
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     for mod in __restrict:
         if name == mod:
             for method in __restrict[mod]:
-                try: del M.__dict__[method]
+                try:
+                    if __silent: M.__dict__[method] = lambda:None
+                    else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M</code></pre>
 </details>
@@ -121,7 +123,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -156,7 +158,7 @@ ref.main(__builtins__)
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -202,8 +204,8 @@ ref.main(__builtins__)
     ```
     
     &#34;&#34;&#34;
-    global __protectfiles, __restrict
-    __protectfiles = protectfiles
+    global __protectfiles, __restrict, __silent
+    __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
