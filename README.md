@@ -102,38 +102,9 @@ ref.main(__builtins__, protectdirs = True)
 
 ## Documentation
 
-Better docs can be found under [the _docs/ref_ folder](https://github.com/donno2048/restricted-functions/tree/master/docs/ref)
+Better docs can be found under [the _docs/ref_ folder](https://github.com/donno2048/restricted-functions/tree/master/docs/ref), but you can use:
 
 ```py
 >>> import ref
 >>> help(ref)
-
-Help on package ref:
-
-NAME
-    ref - To use this module just use the main function at the top of your code
-
-PACKAGE CONTENTS
-
-
-FUNCTIONS
-    main(__builtins__: module, restrictwrite: bool = False, level: int = 0) -> None
-        # Usage
-
-        ## Basic usage
-
-        ```py
-        import ref
-        ref.main(__builtins__)
-        ```
-
-        ## Additional options
-
-         - `restrictwrite` allows you to prevent Python files from using open to overwrite files.
-
-        restrictwrite: `bool | default False`
-
-         - `level` allows you to choose a specific level of restriction
-
-        level: `int | default 0`
 ```
