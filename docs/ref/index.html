@@ -66,6 +66,16 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ref.main(__builtins__, protectdirs = True)
     ```
     
+    - lockperms
+
+    This will prevent use of chmod in that Python file.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__,lockperms = True)
+    ```
+    
     &#34;&#34;&#34;
     global __protectfiles, __protectdirs, __lockperms
     __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
@@ -186,6 +196,13 @@ ref.main(__builtins__)
 <p>The <code>protectdirs</code> option protects against the deletion of directories. </p>
 <p>To use, replace the setup with:</p>
 <pre><code class="language-py">ref.main(__builtins__, protectdirs = True)
+</code></pre>
+<ul>
+<li>lockperms</li>
+</ul>
+<p>This will prevent use of chmod in that Python file.</p>
+<p>To use, replace the setup with:</p>
+<pre><code class="language-py">ref.main(__builtins__,lockperms = True)
 </code></pre></div>
 <details class="source">
 <summary>
@@ -224,6 +241,16 @@ ref.main(__builtins__)
     
     ```py
     ref.main(__builtins__, protectdirs = True)
+    ```
+    
+    - lockperms
+
+    This will prevent use of chmod in that Python file.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__,lockperms = True)
     ```
     
     &#34;&#34;&#34;
