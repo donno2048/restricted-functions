@@ -1,5 +1,5 @@
 import ref
-ref.main(__builtins__, protectfiles = True)
+ref.main(__builtins__, protectfiles = True, protectdirs = True)
 import os, subprocess, shutil
 try: os.system("echo \"failure\"")
 except Exception as e: print(e) # Testing
