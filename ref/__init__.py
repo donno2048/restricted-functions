@@ -2,7 +2,7 @@
 from types import ModuleType
 import importlib
 __protectfiles, __protectdirs = None, None
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False) -> None:
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
     """
     # Usage
 
@@ -113,5 +113,12 @@ def __import(name, *args):
             except AttributeError: pass
         elif name == 'pathlib.Path':
             try: del M.rmdir
+            except AttributeError: pass
+    if lockperms:
+        if name == 'os':
+            try: del M.chmod
+            except AttributeError: pass
+        elif name == "pathlib":
+            try: del M.path.chmod
             except AttributeError: pass
     return M
