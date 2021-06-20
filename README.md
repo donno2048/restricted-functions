@@ -80,6 +80,8 @@ This will cause any use of `open` to overwrite or append content to files to thr
 
 ## Documentation
 
+Better docs can be found under [the _docs/ref_ folder](https://github.com/donno2048/restricted-functions/tree/master/docs/ref)
+
 ```py
 >>> import ref
 >>> help(ref)
