@@ -1,7 +1,13 @@
 """To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-__protectfiles, __protectdirs, __lockperms = None, None, None
+__protectfiles = None
+__restrict = {
+    "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
+    "subprocess": ["run", "check_output", "call"],
+    "pathlib.Path": [],
+    "shutil": []
+}
 def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
     """
     # Usage
@@ -48,8 +54,18 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     """
-    global __protectfiles, __protectdirs, __lockperms
-    __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
+    global __protectfiles, __restrict
+    __protectfiles = protectfiles
+    if protectfiles:
+        __restrict["os"].extend(["remove", "unlink"])
+        __restrict["pathlib.Path"].append("unlink")
+    if protectdirs:
+        __restrict["os"].extend(["rmdir", "removedirs"])
+        __restrict["shutil"].append("rmtree")
+        __restrict["pathlib.Path"].append("rmdir")
+    if lockperms:
+        __restrict["os"].append("chmod")
+        __restrict["pathlib.Path"].append("chmod")
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
@@ -57,80 +73,12 @@ def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __protectfiles, __protectdirs
-    protectfiles, protectdirs, lockperms = __protectfiles, __protectdirs, __lockperms
+    global __restrict
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
-    if name == 'os':
-        #if it is the os module being imported
-        try: del M.system
-        except AttributeError: pass
-        try: del M.popen
-        except AttributeError: pass
-        try: del M.kill
-        except AttributeError: pass
-        try: del M.spawn
-        except AttributeError: pass
-        try: del M.execl
-        except AttributeError: pass
-        try: del M.execle
-        except AttributeError: pass
-        try: del M.execlp
-        except AttributeError: pass
-        try: del M.execlpe
-        except AttributeError: pass
-        try: del M.execv
-        except AttributeError: pass
-        try: del M.execve
-        except AttributeError: pass
-        try: del M.execvp
-        except AttributeError: pass
-        try: del M.execvpe
-        except AttributeError: pass
-        try: del M.killpg
-        except AttributeError: pass
-        try: del M.fork
-        except AttributeError: pass
-        try: del M.forkpty
-        except AttributeError: pass
-        try: del M.plock
-        except AttributeError: pass
-    elif name == 'subprocess':
-        try: del M.run
-        except AttributeError: pass
-        try: del M.check_output
-        except AttributeError: pass
-        try: del M.call
-        except AttributeError: pass
-    if protectfiles:
-        "prevent files from being deleted"
-        if name == 'os':
-            try: del M.remove
-            except AttributeError: pass
-            try: del M.unlink
-            except AttributeError: pass
-        elif name == 'pathlib.Path':
-            try: del M.unlink
-            except AttributeError: pass
-    if protectdirs:
-        "prevent dirs from being deleted"
-        if name == 'os':
-            try: del M.rmdir
-            except AttributeError: pass
-            try: del M.removedirs
-            except AttributeError: pass
-        elif name == 'shutil':
-            try: del M.rmtree
-            except AttributeError: pass
-        elif name == 'pathlib.Path':
-            try: del M.rmdir
-            except AttributeError: pass
-    if lockperms:
-        "Prevent chmod from being used"
-        if name == 'os':
-            try: del M.chmod
-            except AttributeError: pass
-        elif name == 'pathlib.Path':
-            try: del M.chmod
-            except AttributeError: pass
+    for mod in __restrict:
+        if name == mod:
+            for method in __restrict[mod]:
+                try: del M.__dict__[method]
+                except AttributeError: pass
     return M
