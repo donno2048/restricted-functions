@@ -1,4 +1,4 @@
-"""To use this module just use the main function at the top of your code"""
+"""To use this module just use the main function at the top of your code """
 from types import ModuleType
 import importlib
 __level, __restrictwrite = None, None
