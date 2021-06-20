@@ -17,7 +17,7 @@ jobs:
     - name: Build
       run: |
         pdoc --html ref -f -o docs
-        pdoc --pdf ref -f -o docs
+        pdoc ref --pdf > docs/ref/index.md
     - uses: EndBug/add-and-commit@v7.2.1
       with:
         author_name: donno2048
