@@ -1,8 +1,8 @@
 """To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-__protectfiles, __protectdirs = None, None
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False) -> None:
+__protectfiles, __protectdirs, __lockperms = None, None, None
+def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False) -> None:
     """
     # Usage
 
@@ -37,9 +37,19 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ref.main(__builtins__, protectdirs = True)
     ```
     
+    - lockperms
+
+    This will prevent use of chmod in that Python file.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__,lockperms = True)
+    ```
+    
     """
-    global __protectfiles, __protectdirs
-    __protectfiles, __protectdirs = protectfiles, protectdirs
+    global __protectfiles, __protectdirs, __lockperms
+    __protectfiles, __protectdirs, __lockperms = protectfiles, protectdirs, lockperms
     __builtins__.__dict__['__import__'] = __import
     __builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
@@ -48,7 +58,7 @@ def __open(filename, mode="r", *args, **kwargs):
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
     global __protectfiles, __protectdirs
-    protectfiles, protectdirs = __protectfiles, __protectdirs
+    protectfiles, protectdirs, lockperms = __protectfiles, __protectdirs, __lockperms
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if name == 'os':
@@ -93,7 +103,7 @@ def __import(name, *args):
         try: del M.call
         except AttributeError: pass
     if protectfiles:
-        #if file deletion/modification is blocked, block these functions
+        "prevent files from being deleted"
         if name == 'os':
             try: del M.remove
             except AttributeError: pass
@@ -103,6 +113,7 @@ def __import(name, *args):
             try: del M.unlink
             except AttributeError: pass
     if protectdirs:
+        "prevent dirs from being deleted"
         if name == 'os':
             try: del M.rmdir
             except AttributeError: pass
@@ -113,5 +124,13 @@ def __import(name, *args):
             except AttributeError: pass
         elif name == 'pathlib.Path':
             try: del M.rmdir
+            except AttributeError: pass
+    if lockperms:
+        "Prevent chmod from being used"
+        if name == 'os':
+            try: del M.chmod
+            except AttributeError: pass
+        elif name == 'pathlib.Path':
+            try: del M.chmod
             except AttributeError: pass
     return M

@@ -34,7 +34,8 @@ To use this module just use the main function at the top of your code
 >     def main(
 >         __builtins__: module,
 >         protectfiles: bool = False,
->         protectdirs: bool = False
+>         protectdirs: bool = False,
+>         lockperms: bool = False
 >     ) ‑> NoneType
 
 
@@ -69,6 +70,16 @@ To use, replace the setup with:
 
 ```py
 ref.main(__builtins__, protectdirs = True)
+```
+
+- lockperms
+
+This will prevent use of chmod in that Python file.
+
+To use, replace the setup with:
+
+```py
+ref.main(__builtins__,lockperms = True)
 ```
 
 
