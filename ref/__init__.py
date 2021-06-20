@@ -1,12 +1,7 @@
-"""
-# Usage
-
-To use this module just use the main function at the top of your code
-
-"""
+"""To use this module just use the main function at the top of your code"""
 from types import ModuleType
 import importlib
-level_, restrictwrite_ = None, None
+__level, __restrictwrite = None, None
 def main(__builtins__: ModuleType, restrictwrite: bool = False, level: int = 0) -> None:
     """
     # Usage
@@ -28,17 +23,17 @@ def main(__builtins__: ModuleType, restrictwrite: bool = False, level: int = 0) 
 
     level: `int | default 0`
     """
-    global level_, restrictwrite_
-    level_, restrictwrite_ = level, restrictwrite
-    __builtins__.__dict__['__import__'] = import_
-    __builtins__.__dict__['open'] = open_
-def open_(filename, mode="r", *args, **kwargs):
-    global restrictwrite_
-    if restrictwrite_ and ("w" in mode or "a" in mode): raise AttributeError()
+    global __level, __restrictwrite
+    __level, __restrictwrite = level, restrictwrite
+    __builtins__.__dict__['__import__'] = __import
+    __builtins__.__dict__['open'] = __open
+def __open(filename, mode="r", *args, **kwargs):
+    global __restrictwrite
+    if __restrictwrite and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
-def import_(name, *args):
-    global level_, restrictwrite_
-    level, restrictwrite = level_, restrictwrite_
+def __import(name, *args):
+    global __level, __restrictwrite
+    level, restrictwrite = __level, __restrictwrite
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     if level >= 0:
