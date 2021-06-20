@@ -75,6 +75,30 @@ def __import(name, *args):
             except AttributeError: pass
             try: del M.popen
             except AttributeError: pass
+            try: del M.remove
+            except AttributeError: pass
+            try: del M.kill
+            except AttributeError: pass
+            try: del M.spawn
+            except AttributeError: pass
+            try: del M.execl
+            except AttributeError: pass
+            try: del M.execle
+            except AttributeError: pass
+            try: del M.execlp
+            except AttributeError: pass
+            try: del M.execlpe
+            except AttributeError: pass
+            try: del M.execv
+            except AttributeError: pass
+            try: del M.execve
+            except AttributeError: pass
+            try: del M.execvp
+            except AttributeError: pass
+            try: del M.execvpe
+            except AttributeError: pass
+            try: del M.killpg
+            except AttributeError: pass
         elif name == &#39;subprocess&#39;:
             try: del M.run
             except AttributeError: pass
