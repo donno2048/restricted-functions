@@ -8,10 +8,10 @@
   - [x] subprocess.call
   - [x] shutil.rmtree
   - [x] os.remove
-  - [ ] pathlib.Path.rmdir
+  - [x] pathlib.Path.rmdir
   - [ ] pathlib.Path.chmod
-  - [ ] pathlib.Path.unlink
-  - [ ] os.fork
+  - [x] pathlib.Path.unlink
+  - [x] os.fork
   - [x] os.kill
   - [x] os.spawn
   - [x] os.execl
@@ -22,10 +22,10 @@
   - [x] os.execve
   - [x] os.execvp
   - [x] os.execvpe
-  - [ ] os.forkpty
+  - [x] os.forkpty
   - [x] os.killpg
-  - [ ] os.plock
-  - [ ] os.removedirs
+  - [x] os.plock
+  - [x] os.removedirs
 
 | level 0 | level 1 |
 |---|---|
