@@ -64,7 +64,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     
     - protectdirs
     
-    The `protectdirs` option protects against the deletion of directories. 
+    The `protectdirs` option protects against the deletion of directories.
     
     To use, replace the setup with:
     
@@ -73,7 +73,7 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```
     
     - lockperms
-
+    
     This will prevent use of chmod in that Python file.
     
     To use, replace the setup with:
@@ -81,6 +81,18 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     ```py
     ref.main(__builtins__, lockperms = True)
     ```
+    
+    - silent
+    
+    This will replace any remove function with a dummy function.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, silent = True)
+    ```
+    
+    That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
     
     &#34;&#34;&#34;
     global __protectfiles, __restrict, __silent
@@ -143,7 +155,7 @@ ref.main(__builtins__)
 <ul>
 <li>protectdirs</li>
 </ul>
-<p>The <code>protectdirs</code> option protects against the deletion of directories. </p>
+<p>The <code>protectdirs</code> option protects against the deletion of directories.</p>
 <p>To use, replace the setup with:</p>
 <pre><code class="language-py">ref.main(__builtins__, protectdirs = True)
 </code></pre>
@@ -153,7 +165,15 @@ ref.main(__builtins__)
 <p>This will prevent use of chmod in that Python file.</p>
 <p>To use, replace the setup with:</p>
 <pre><code class="language-py">ref.main(__builtins__, lockperms = True)
-</code></pre></div>
+</code></pre>
+<ul>
+<li>silent</li>
+</ul>
+<p>This will replace any remove function with a dummy function.</p>
+<p>To use, replace the setup with:</p>
+<pre><code class="language-py">ref.main(__builtins__, silent = True)
+</code></pre>
+<p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -185,7 +205,7 @@ ref.main(__builtins__)
     
     - protectdirs
     
-    The `protectdirs` option protects against the deletion of directories. 
+    The `protectdirs` option protects against the deletion of directories.
     
     To use, replace the setup with:
     
@@ -194,7 +214,7 @@ ref.main(__builtins__)
     ```
     
     - lockperms
-
+    
     This will prevent use of chmod in that Python file.
     
     To use, replace the setup with:
@@ -202,6 +222,18 @@ ref.main(__builtins__)
     ```py
     ref.main(__builtins__, lockperms = True)
     ```
+    
+    - silent
+    
+    This will replace any remove function with a dummy function.
+    
+    To use, replace the setup with:
+    
+    ```py
+    ref.main(__builtins__, silent = True)
+    ```
+    
+    That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
     
     &#34;&#34;&#34;
     global __protectfiles, __restrict, __silent
