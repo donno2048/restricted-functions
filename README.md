@@ -71,6 +71,7 @@ To use, replace the setup with:
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
 - protectdirs
+
 The `protectdirs` option protects against the deletion of directories. 
 
 To use, replace the setup with:
