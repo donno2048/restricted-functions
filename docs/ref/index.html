@@ -30,6 +30,7 @@
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code&#34;&#34;&#34;
 from types import ModuleType
 import importlib
+ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
 __restrict = {
     &#34;os&#34;: [&#34;system&#34;, &#34;popen&#34;, &#34;kill&#34;, &#34;spawn&#34;, &#34;execl&#34;, &#34;execle&#34;, &#34;execlp&#34;, &#34;execlpe&#34;, &#34;execv&#34;, &#34;execve&#34;, &#34;execvp&#34;, &#34;execvpe&#34;, &#34;killpg&#34;, &#34;fork&#34;, &#34;forkpty&#34;, &#34;plock&#34;],
@@ -37,7 +38,7 @@ __restrict = {
     &#34;pathlib.Path&#34;: [],
     &#34;shutil&#34;: []
 }
-def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -&gt; None:
+def main(__builtins__: ModuleType, *args) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -50,52 +51,53 @@ def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool
     
     ## Additional options
     
-    - protectfiles
+    - ProtectFiles
     
-    The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, protectfiles = True)
+    ref.main(__builtins__, ref.ProtectFiles)
     ```
     
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
     
-    - protectdirs
+    - ProtectDirs
     
-    The `protectdirs` option protects against the deletion of directories.
+    The `ProtectDirs` option protects against the deletion of directories.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, protectdirs = True)
+    ref.main(__builtins__, ref.ProtectDirs)
     ```
     
-    - lockperms
+    - LockPerms
     
     This will prevent use of chmod in that Python file.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, lockperms = True)
+    ref.main(__builtins__, ref.LockPerms)
     ```
     
-    - silent
+    - Silent
     
     This will replace any remove function with a dummy function.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, silent = True)
+    ref.main(__builtins__, ref.Silent)
     ```
     
     That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
     
     &#34;&#34;&#34;
     global __protectfiles, __restrict, __silent
+    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
@@ -135,7 +137,7 @@ def __import(name, *args):
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>__builtins__: module, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) ‑> NoneType</span>
+<span>def <span class="ident">main</span></span>(<span>__builtins__: module, *args) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><h1 id="usage">Usage</h1>
@@ -145,40 +147,40 @@ ref.main(__builtins__)
 </code></pre>
 <h2 id="additional-options">Additional options</h2>
 <ul>
-<li>protectfiles</li>
+<li>ProtectFiles</li>
 </ul>
-<p>The <code>protectfiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
+<p>The <code>ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(__builtins__, protectfiles = True)
+<pre><code class="language-py">ref.main(__builtins__, ref.ProtectFiles)
 </code></pre>
 <p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
 <ul>
-<li>protectdirs</li>
+<li>ProtectDirs</li>
 </ul>
-<p>The <code>protectdirs</code> option protects against the deletion of directories.</p>
+<p>The <code>ProtectDirs</code> option protects against the deletion of directories.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(__builtins__, protectdirs = True)
+<pre><code class="language-py">ref.main(__builtins__, ref.ProtectDirs)
 </code></pre>
 <ul>
-<li>lockperms</li>
+<li>LockPerms</li>
 </ul>
 <p>This will prevent use of chmod in that Python file.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(__builtins__, lockperms = True)
+<pre><code class="language-py">ref.main(__builtins__, ref.LockPerms)
 </code></pre>
 <ul>
-<li>silent</li>
+<li>Silent</li>
 </ul>
 <p>This will replace any remove function with a dummy function.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(__builtins__, silent = True)
+<pre><code class="language-py">ref.main(__builtins__, ref.Silent)
 </code></pre>
 <p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def main(__builtins__: ModuleType, protectfiles: bool = False, protectdirs: bool = False, lockperms: bool = False, silent: bool = False) -&gt; None:
+<pre><code class="python">def main(__builtins__: ModuleType, *args) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -191,52 +193,53 @@ ref.main(__builtins__)
     
     ## Additional options
     
-    - protectfiles
+    - ProtectFiles
     
-    The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, protectfiles = True)
+    ref.main(__builtins__, ref.ProtectFiles)
     ```
     
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
     
-    - protectdirs
+    - ProtectDirs
     
-    The `protectdirs` option protects against the deletion of directories.
+    The `ProtectDirs` option protects against the deletion of directories.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, protectdirs = True)
+    ref.main(__builtins__, ref.ProtectDirs)
     ```
     
-    - lockperms
+    - LockPerms
     
     This will prevent use of chmod in that Python file.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, lockperms = True)
+    ref.main(__builtins__, ref.LockPerms)
     ```
     
-    - silent
+    - Silent
     
     This will replace any remove function with a dummy function.
     
     To use, replace the setup with:
     
     ```py
-    ref.main(__builtins__, silent = True)
+    ref.main(__builtins__, ref.Silent)
     ```
     
     That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
     
     &#34;&#34;&#34;
     global __protectfiles, __restrict, __silent
+    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
