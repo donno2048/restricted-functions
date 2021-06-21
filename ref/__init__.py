@@ -5,7 +5,7 @@ ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
-    "subprocess": ["run", "check_output", "call"],
+    "subprocess": ["run", "check_output", "call","Popen"],
     "pathlib.Path": [],
     "shutil": []
 }
