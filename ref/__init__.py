@@ -56,7 +56,7 @@ def main(__builtins__: ModuleType, *args) -> None:
     
     - Silent
     
-    This will replace any remove function with a dummy function.
+    This will replace any removed function with a dummy function.
     
     To use, replace the setup with:
     
