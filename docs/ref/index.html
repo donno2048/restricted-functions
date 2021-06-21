@@ -100,11 +100,12 @@ def main(__builtins__: ModuleType, *args) -&gt; None:
     protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
-        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
+        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;,&#34;rename&#34;,&#34;replace&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
+        __restrict[&#34;shutil&#34;].append(&#34;move&#34;)
     if protectdirs:
-        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;])
-        __restrict[&#34;shutil&#34;].append(&#34;rmtree&#34;)
+        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;,&#34;rename&#34;,&#34;replace&#34;])
+        __restrict[&#34;shutil&#34;].extend([&#34;rmtree&#34;,&#34;rename&#34;,&#34;replace&#34;,&#34;move&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;rmdir&#34;)
     if lockperms:
         __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
@@ -242,11 +243,12 @@ ref.main(__builtins__)
     protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
-        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;])
+        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;,&#34;rename&#34;,&#34;replace&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
+        __restrict[&#34;shutil&#34;].append(&#34;move&#34;)
     if protectdirs:
-        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;])
-        __restrict[&#34;shutil&#34;].append(&#34;rmtree&#34;)
+        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;,&#34;rename&#34;,&#34;replace&#34;])
+        __restrict[&#34;shutil&#34;].extend([&#34;rmtree&#34;,&#34;rename&#34;,&#34;replace&#34;,&#34;move&#34;])
         __restrict[&#34;pathlib.Path&#34;].append(&#34;rmdir&#34;)
     if lockperms:
         __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
