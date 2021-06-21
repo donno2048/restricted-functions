@@ -34,7 +34,7 @@ ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
 __restrict = {
     &#34;os&#34;: [&#34;system&#34;, &#34;popen&#34;, &#34;kill&#34;, &#34;spawn&#34;, &#34;execl&#34;, &#34;execle&#34;, &#34;execlp&#34;, &#34;execlpe&#34;, &#34;execv&#34;, &#34;execve&#34;, &#34;execvp&#34;, &#34;execvpe&#34;, &#34;killpg&#34;, &#34;fork&#34;, &#34;forkpty&#34;, &#34;plock&#34;],
-    &#34;subprocess&#34;: [&#34;run&#34;, &#34;check_output&#34;, &#34;call&#34;],
+    &#34;subprocess&#34;: [&#34;run&#34;, &#34;check_output&#34;, &#34;call&#34;,&#34;Popen&#34;],
     &#34;pathlib.Path&#34;: [],
     &#34;shutil&#34;: []
 }
