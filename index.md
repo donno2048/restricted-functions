@@ -63,46 +63,46 @@ Please note that this _does not_ sandbox your code, and does not have a complete
 
 ## Additional options
 
-- protectfiles
+- ProtectFiles
 
-The `protectfiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
 
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, protectfiles = True)
+ref.main(__builtins__, ref.ProtectFiles)
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
-- protectdirs
+- ProtectDirs
 
-The `protectdirs` option protects against the deletion of directories.
+The `ProtectDirs` option protects against the deletion of directories.
 
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, protectdirs = True)
+ref.main(__builtins__, ref.ProtectDirs)
 ```
 
-- lockperms
+- LockPerms
 
 This will prevent use of chmod in that Python file.
 
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, lockperms = True)
+ref.main(__builtins__, ref.LockPerms)
 ```
 
-- silent
+- Silent
 
 This will replace any remove function with a dummy function.
 
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, silent = True)
+ref.main(__builtins__, ref.Silent)
 ```
 
 That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
