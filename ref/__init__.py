@@ -71,12 +71,12 @@ def main(__builtins__: ModuleType, *args) -> None:
     protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
-        __restrict["os"].extend(["remove", "unlink","rename","replace"])
+        __restrict["os"].extend(["remove", "unlink", "rename", "replace"])
         __restrict["pathlib.Path"].append("unlink")
         __restrict["shutil"].append("move")
     if protectdirs:
-        __restrict["os"].extend(["rmdir", "removedirs","rename","replace"])
-        __restrict["shutil"].extend(["rmtree","rename","replace","move"])
+        __restrict["os"].extend(["rmdir", "removedirs", "rename", "replace"])
+        __restrict["shutil"].extend(["rmtree", "move"])
         __restrict["pathlib.Path"].append("rmdir")
     if lockperms:
         __restrict["os"].append("chmod")
