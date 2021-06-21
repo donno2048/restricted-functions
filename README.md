@@ -36,7 +36,7 @@ del p.exe
 ```
 
 ## Usage/Example
-**Important: the import and setup statments must be at the top of the file**
+**Important: the import and setup must be at the top of the file**
 
 ```py
 >>> import ref
