@@ -1,6 +1,6 @@
 #test it out
 import ref
-ref.main(__builtins__, protectfiles = True, protectdirs = True, lockperms = True, silent = True)
+ref.main(__builtins__, ref.ProtectFiles, ref.ProtectDirs, ref.LockPerms, ref.Silent)
 import os, subprocess, shutil
 os.system("echo \"failure\"")
 os.rmdir("../restricted-functions")
