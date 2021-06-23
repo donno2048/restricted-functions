@@ -1,4 +1,4 @@
-"""To use this module just use the main function at the top of your code"""
+"""To use this module just use the main function at the top of your code."""
 from types import ModuleType
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
@@ -19,53 +19,53 @@ def main(__builtins__: ModuleType, *args) -> None:
     import ref
     ref.main(__builtins__)
     ```
-    
+
     ## Additional options
-    
+
     - ProtectFiles
-    
+
     The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
-    
+
     To use, replace the setup with:
-    
+
     ```py
     ref.main(__builtins__, ref.ProtectFiles)
     ```
-    
+
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
-    
+
     - ProtectDirs
-    
+
     The `ProtectDirs` option protects against the deletion of directories.
-    
+
     To use, replace the setup with:
-    
+
     ```py
     ref.main(__builtins__, ref.ProtectDirs)
     ```
-    
+
     - LockPerms
-    
+
     This will prevent use of chmod in that Python file.
-    
+
     To use, replace the setup with:
-    
+
     ```py
     ref.main(__builtins__, ref.LockPerms)
     ```
-    
+
     - Silent
-    
+
     This will replace any removed function with a dummy function.
-    
+
     To use, replace the setup with:
-    
+
     ```py
     ref.main(__builtins__, ref.Silent)
     ```
-    
+
     That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
-    
+
     """
     global __protectfiles, __restrict, __silent
     protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
