@@ -40,7 +40,7 @@ del p.exe
 
 ```py
 >>> import ref
->>> ref.main(__builtins__)
+>>> ref.main()
 >>> import os
 >>> os.system("echo \"doing something that harms your system...\"")
 Traceback (most recent call last):
@@ -71,7 +71,7 @@ The `ProtectFiles` option allows you to prevent Python files from using `open` t
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, ref.ProtectFiles)
+ref.main(ref.ProtectFiles)
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -83,7 +83,7 @@ The `ProtectDirs` option protects against the deletion of directories.
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, ref.ProtectDirs)
+ref.main(ref.ProtectDirs)
 ```
 
 - LockPerms
@@ -93,7 +93,7 @@ This will prevent use of chmod in that Python file.
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, ref.LockPerms)
+ref.main(ref.LockPerms)
 ```
 
 - Silent
@@ -103,7 +103,7 @@ This will replace any removed function with a dummy function.
 To use, replace the setup with:
 
 ```py
-ref.main(__builtins__, ref.Silent)
+ref.main(ref.Silent)
 ```
 
 That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
