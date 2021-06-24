@@ -36,11 +36,12 @@ del p.exe
 ```
 
 ## Usage/Example
-**Important: the import and setup must be at the top of the file**
+
+### Important: the import and setup must be at the top of the file
 
 ```py
 >>> import ref
->>> ref.main()
+>>> __ref__()
 >>> import os
 >>> os.system("echo \"doing something that harms your system...\"")
 Traceback (most recent call last):
@@ -71,7 +72,7 @@ The `ProtectFiles` option allows you to prevent Python files from using `open` t
 To use, replace the setup with:
 
 ```py
-ref.main(ref.ProtectFiles)
+__ref__(ref.ProtectFiles)
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -83,7 +84,7 @@ The `ProtectDirs` option protects against the deletion of directories.
 To use, replace the setup with:
 
 ```py
-ref.main(ref.ProtectDirs)
+__ref__(ref.ProtectDirs)
 ```
 
 - LockPerms
@@ -93,7 +94,7 @@ This will prevent use of chmod in that Python file.
 To use, replace the setup with:
 
 ```py
-ref.main(ref.LockPerms)
+__ref__(ref.LockPerms)
 ```
 
 - Silent
@@ -103,7 +104,7 @@ This will replace any removed function with a dummy function.
 To use, replace the setup with:
 
 ```py
-ref.main(ref.Silent)
+__ref__(ref.Silent)
 ```
 
 That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
