@@ -113,11 +113,9 @@ def main(__builtins__: ModuleType, *args) -&gt; None:
     __builtins__.__dict__[&#39;__import__&#39;] = __import
     __builtins__.__dict__[&#39;open&#39;] = __open
 def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
-    global __protectfiles
     if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
 def __import(name, *args):
-    global __restrict, __silent
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
     for mod in __restrict:
