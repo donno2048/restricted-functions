@@ -1,5 +1,4 @@
 """To use this module just use the main function at the top of your code."""
-from types import ModuleType
 from sys import modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
