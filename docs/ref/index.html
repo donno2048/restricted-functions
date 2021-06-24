@@ -39,7 +39,7 @@ __restrict = {
     &#34;pathlib.Path&#34;: [],
     &#34;shutil&#34;: []
 }
-def main(*args) -&gt; None:
+def __ref__(*args) -&gt; None:
     &#34;&#34;&#34;
     # Usage
 
@@ -127,7 +127,7 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
-if __name__ != &#39;__main__&#39;: modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = main</code></pre>
+if __name__ != &#39;__main__&#39;: modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = __ref__</code></pre>
 </details>
 </section>
 <section>
@@ -135,129 +135,6 @@ if __name__ != &#39;__main__&#39;: modules[&#39;__main__&#39;].__builtins__.__di
 <section>
 </section>
 <section>
-<h2 class="section-title" id="header-functions">Functions</h2>
-<dl>
-<dt id="ref.main"><code class="name flex">
-<span>def <span class="ident">main</span></span>(<span>*args) ‑> NoneType</span>
-</code></dt>
-<dd>
-<div class="desc"><h1 id="usage">Usage</h1>
-<h2 id="basic-usage">Basic usage</h2>
-<pre><code class="language-py">import ref
-__ref__()
-</code></pre>
-<h2 id="additional-options">Additional options</h2>
-<ul>
-<li>ProtectFiles</li>
-</ul>
-<p>The <code>ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.ProtectFiles)
-</code></pre>
-<p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
-<ul>
-<li>ProtectDirs</li>
-</ul>
-<p>The <code>ProtectDirs</code> option protects against the deletion of directories.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.ProtectDirs)
-</code></pre>
-<ul>
-<li>LockPerms</li>
-</ul>
-<p>This will prevent use of chmod in that Python file.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.LockPerms)
-</code></pre>
-<ul>
-<li>Silent</li>
-</ul>
-<p>This will replace any removed function with a dummy function.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.Silent)
-</code></pre>
-<p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def main(*args) -&gt; None:
-    &#34;&#34;&#34;
-    # Usage
-
-    ## Basic usage
-
-    ```py
-    import ref
-    __ref__()
-    ```
-
-    ## Additional options
-
-    - ProtectFiles
-
-    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.ProtectFiles)
-    ```
-
-    This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
-
-    - ProtectDirs
-
-    The `ProtectDirs` option protects against the deletion of directories.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.ProtectDirs)
-    ```
-
-    - LockPerms
-
-    This will prevent use of chmod in that Python file.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.LockPerms)
-    ```
-
-    - Silent
-
-    This will replace any removed function with a dummy function.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.Silent)
-    ```
-
-    That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
-
-    &#34;&#34;&#34;
-    global __protectfiles, __restrict, __silent
-    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
-    __protectfiles, __silent = protectfiles, silent
-    if protectfiles:
-        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
-        __restrict[&#34;shutil&#34;].append(&#34;move&#34;)
-    if protectdirs:
-        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;shutil&#34;].extend([&#34;rmtree&#34;, &#34;move&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;rmdir&#34;)
-    if lockperms:
-        __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;chmod&#34;)
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
-</details>
-</dd>
-</dl>
 </section>
 <section>
 </section>
@@ -268,11 +145,6 @@ __ref__()
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="ref.main" href="#ref.main">main</a></code></li>
-</ul>
-</li>
 </ul>
 </nav>
 </main>
