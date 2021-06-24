@@ -10,7 +10,7 @@ __restrict = {
     "pathlib.Path": [],
     "shutil": []
 }
-def main(*args) -> None:
+def __ref__(*args) -> None:
     """
     # Usage
 
@@ -98,4 +98,4 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
-if __name__ != '__main__': modules['__main__'].__builtins__.__dict__['__ref__'] = main
+if __name__ != '__main__': modules['__main__'].__builtins__.__dict__['__ref__'] = __ref__
