@@ -1,5 +1,5 @@
 import ref
-ref.main(__builtins__, ref.ProtectFiles, ref.ProtectDirs, ref.LockPerms, ref.Silent)
+ref.main(ref.ProtectFiles, ref.ProtectDirs, ref.LockPerms, ref.Silent)
 import os, subprocess
 os.system("echo \"failure\"")
 os.rmdir("../restricted-functions")
