@@ -28,6 +28,7 @@
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code.&#34;&#34;&#34;
+
 from sys import modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
@@ -46,7 +47,7 @@ def main(*args) -&gt; None:
 
     ```py
     import ref
-    ref.main()
+    __ref__()
     ```
 
     ## Additional options
@@ -58,7 +59,7 @@ def main(*args) -&gt; None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectFiles)
+    __ref__(ref.ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -70,7 +71,7 @@ def main(*args) -&gt; None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectDirs)
+    __ref__(ref.ProtectDirs)
     ```
 
     - LockPerms
@@ -80,7 +81,7 @@ def main(*args) -&gt; None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.LockPerms)
+    __ref__(ref.LockPerms)
     ```
 
     - Silent
@@ -90,7 +91,7 @@ def main(*args) -&gt; None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.Silent)
+    __ref__(ref.Silent)
     ```
 
     That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
@@ -125,7 +126,8 @@ def __import(name, *args):
                     if __silent: M.__dict__[method] = lambda *_:None
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
-    return M</code></pre>
+    return M
+if __name__ != &#39;__main__&#39;: modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = main</code></pre>
 </details>
 </section>
 <section>
@@ -142,7 +144,7 @@ def __import(name, *args):
 <div class="desc"><h1 id="usage">Usage</h1>
 <h2 id="basic-usage">Basic usage</h2>
 <pre><code class="language-py">import ref
-ref.main()
+__ref__()
 </code></pre>
 <h2 id="additional-options">Additional options</h2>
 <ul>
@@ -150,7 +152,7 @@ ref.main()
 </ul>
 <p>The <code>ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(ref.ProtectFiles)
+<pre><code class="language-py">__ref__(ref.ProtectFiles)
 </code></pre>
 <p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
 <ul>
@@ -158,21 +160,21 @@ ref.main()
 </ul>
 <p>The <code>ProtectDirs</code> option protects against the deletion of directories.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(ref.ProtectDirs)
+<pre><code class="language-py">__ref__(ref.ProtectDirs)
 </code></pre>
 <ul>
 <li>LockPerms</li>
 </ul>
 <p>This will prevent use of chmod in that Python file.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(ref.LockPerms)
+<pre><code class="language-py">__ref__(ref.LockPerms)
 </code></pre>
 <ul>
 <li>Silent</li>
 </ul>
 <p>This will replace any removed function with a dummy function.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">ref.main(ref.Silent)
+<pre><code class="language-py">__ref__(ref.Silent)
 </code></pre>
 <p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
 <details class="source">
@@ -187,7 +189,7 @@ ref.main()
 
     ```py
     import ref
-    ref.main()
+    __ref__()
     ```
 
     ## Additional options
@@ -199,7 +201,7 @@ ref.main()
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectFiles)
+    __ref__(ref.ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -211,7 +213,7 @@ ref.main()
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectDirs)
+    __ref__(ref.ProtectDirs)
     ```
 
     - LockPerms
@@ -221,7 +223,7 @@ ref.main()
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.LockPerms)
+    __ref__(ref.LockPerms)
     ```
 
     - Silent
@@ -231,7 +233,7 @@ ref.main()
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.Silent)
+    __ref__(ref.Silent)
     ```
 
     That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
