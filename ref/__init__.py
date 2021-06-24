@@ -10,7 +10,7 @@ __restrict = {
     "pathlib.Path": [],
     "shutil": []
 }
-def main(*args) -> None:
+def set(*args) -> None:
     """
     # Usage
 
@@ -18,7 +18,6 @@ def main(*args) -> None:
 
     ```py
     import ref
-    ref.main()
     ```
 
     ## Additional options
@@ -30,7 +29,8 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectFiles)
+    import ref
+    ref.set(ref.ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -42,7 +42,8 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectDirs)
+    import ref
+    ref.set(ref.ProtectDirs)
     ```
 
     - LockPerms
@@ -52,7 +53,8 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.LockPerms)
+    import ref
+    ref.set(ref.LockPerms)
     ```
 
     - Silent
@@ -62,7 +64,8 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.Silent)
+    import ref
+    ref.set(ref.Silent)
     ```
 
     That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
@@ -98,3 +101,4 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
+if __name__ != '__main__': set()
