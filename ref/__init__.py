@@ -1,5 +1,6 @@
 """To use this module just use the main function at the top of your code."""
 from types import ModuleType
+from sys import modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
@@ -9,7 +10,7 @@ __restrict = {
     "pathlib.Path": [],
     "shutil": []
 }
-def main(__builtins__: ModuleType, *args) -> None:
+def main(*args) -> None:
     """
     # Usage
 
@@ -17,7 +18,7 @@ def main(__builtins__: ModuleType, *args) -> None:
 
     ```py
     import ref
-    ref.main(__builtins__)
+    ref.main()
     ```
 
     ## Additional options
@@ -29,7 +30,7 @@ def main(__builtins__: ModuleType, *args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(__builtins__, ref.ProtectFiles)
+    ref.main(ref.ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -41,7 +42,7 @@ def main(__builtins__: ModuleType, *args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(__builtins__, ref.ProtectDirs)
+    ref.main(ref.ProtectDirs)
     ```
 
     - LockPerms
@@ -51,7 +52,7 @@ def main(__builtins__: ModuleType, *args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(__builtins__, ref.LockPerms)
+    ref.main(ref.LockPerms)
     ```
 
     - Silent
@@ -61,7 +62,7 @@ def main(__builtins__: ModuleType, *args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(__builtins__, ref.Silent)
+    ref.main(ref.Silent)
     ```
 
     That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
@@ -81,8 +82,8 @@ def main(__builtins__: ModuleType, *args) -> None:
     if lockperms:
         __restrict["os"].append("chmod")
         __restrict["pathlib.Path"].append("chmod")
-    __builtins__.__dict__['__import__'] = __import
-    __builtins__.__dict__['open'] = __open
+    modules['__main__'].__builtins__.__dict__['__import__'] = __import
+    modules['__main__'].__builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
