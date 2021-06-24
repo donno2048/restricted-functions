@@ -1,4 +1,5 @@
 """To use this module just use the main function at the top of your code."""
+
 from sys import modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
@@ -17,7 +18,7 @@ def main(*args) -> None:
 
     ```py
     import ref
-    ref.main()
+    __ref__()
     ```
 
     ## Additional options
@@ -29,7 +30,7 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectFiles)
+    __ref__(ref.ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
@@ -41,7 +42,7 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.ProtectDirs)
+    __ref__(ref.ProtectDirs)
     ```
 
     - LockPerms
@@ -51,7 +52,7 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.LockPerms)
+    __ref__(ref.LockPerms)
     ```
 
     - Silent
@@ -61,7 +62,7 @@ def main(*args) -> None:
     To use, replace the setup with:
 
     ```py
-    ref.main(ref.Silent)
+    __ref__(ref.Silent)
     ```
 
     That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
@@ -97,3 +98,4 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
+if __name__ != '__main__': modules['__main__'].__builtins__.__dict__['__ref__'] = main
