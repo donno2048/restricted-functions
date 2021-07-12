@@ -1,6 +1,6 @@
 """To use this module just use the main function at the top of your code."""
 
-from sys import modules
+from sys import modules as __modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
@@ -82,8 +82,8 @@ def ref(*args) -> None:
     if lockperms:
         __restrict["os"].append("chmod")
         __restrict["pathlib.Path"].append("chmod")
-    modules['__main__'].__builtins__.__dict__['__import__'] = __import
-    modules['__main__'].__builtins__.__dict__['open'] = __open
+    __modules['__main__'].__builtins__.__dict__['__import__'] = __import
+    __modules['__main__'].__builtins__.__dict__['open'] = __open
 def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
@@ -98,4 +98,4 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
-if __name__ != '__main__': modules['__main__'].__builtins__.__dict__['__ref__'] = ref
+if __name__ != '__main__': __modules['__main__'].__builtins__.__dict__['__ref__'] = ref
