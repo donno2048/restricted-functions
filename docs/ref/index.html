@@ -29,7 +29,7 @@
 </summary>
 <pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code.&#34;&#34;&#34;
 
-from sys import modules
+from sys import modules as __modules
 import importlib
 ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
 __protectfiles, __silent = None, None
@@ -111,8 +111,8 @@ def ref(*args) -&gt; None:
     if lockperms:
         __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
         __restrict[&#34;pathlib.Path&#34;].append(&#34;chmod&#34;)
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open
+    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
+    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open
 def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
     if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
     return open(filename, mode, *args, **kwargs)
@@ -127,7 +127,7 @@ def __import(name, *args):
                     else: del M.__dict__[method]
                 except (AttributeError, KeyError): pass
     return M
-if __name__ != &#39;__main__&#39;: modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = ref</code></pre>
+if __name__ != &#39;__main__&#39;: __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = ref</code></pre>
 </details>
 </section>
 <section>
@@ -253,8 +253,8 @@ __ref__()
     if lockperms:
         __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
         __restrict[&#34;pathlib.Path&#34;].append(&#34;chmod&#34;)
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
-    modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
+    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
+    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
 </details>
 </dd>
 </dl>
