@@ -1,7 +1,8 @@
 from setuptools import setup, find_packages
+from ref import __version__
 setup(
     name='restricted-functions',
-    version='1.1.2',
+    version=__version__,
     license='MIT',
     author='Elisha Hollander, Alexander Bina',
     description="Restricted-functions is a package for Python that allows you to deny dangerous functions.",

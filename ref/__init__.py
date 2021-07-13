@@ -2,11 +2,11 @@
 
 from sys import modules as __modules
 import importlib
-ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
-__protectfiles, __silent = None, None
+_ProtectFiles, _ProtectDirs, _LockPerms, _Silent = range(4)
+__version__, __file__, __protectfiles, __silent = "1.1.3", None, None, None
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
-    "subprocess": ["run", "check_output", "call","Popen"],
+    "subprocess": ["run", "check_output", "call", "Popen"],
     "pathlib.Path": [],
     "shutil": []
 }
@@ -23,46 +23,46 @@ def ref(*args) -> None:
 
     ## Additional options
 
-    - ProtectFiles
+    - _ProtectFiles
 
-    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    The `_ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.ProtectFiles)
+    __ref__(ref._ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
-    - ProtectDirs
+    - _ProtectDirs
 
-    The `ProtectDirs` option protects against the deletion of directories.
+    The `_ProtectDirs` option protects against the deletion of directories.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.ProtectDirs)
+    __ref__(ref._ProtectDirs)
     ```
 
-    - LockPerms
+    - _LockPerms
 
     This will prevent use of chmod in that Python file.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.LockPerms)
+    __ref__(ref._LockPerms)
     ```
 
-    - Silent
+    - _Silent
 
     This will replace any removed function with a dummy function.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.Silent)
+    __ref__(ref._Silent)
     ```
 
     That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
