@@ -136,5 +136,5 @@ That way, you won't get an error when trying to use `os.system("echo \"doing som
 Better docs can be found under [the _docs/ref_ folder](https://donno2048.github.io/restricted-functions/docs/ref){:target="_blank" rel="noopener"}, but you can use:
 
 ```sh
-> python3 -c help('ref')
+> python3 -c "help('ref')"
 ```
