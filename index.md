@@ -1,7 +1,7 @@
 # Restricted-functions
 
-[![](https://github.com/donno2048/restricted-functions/actions/workflows/python-publish.yml/badge.svg)](https://pypi.org/project/restricted-functions/)
-![](https://github.com/donno2048/restricted-functions/actions/workflows/test.yml/badge.svg)
+[![PyPI publish](https://github.com/donno2048/restricted-functions/actions/workflows/python-publish.yml/badge.svg)](https://pypi.org/project/restricted-functions/)
+![Test the package](https://github.com/donno2048/restricted-functions/actions/workflows/test.yml/badge.svg)
 ![Ossar scan](https://github.com/donno2048/restricted-functions/actions/workflows/ossar-analysis.yml/badge.svg)
 [![PyPI version](https://img.shields.io/pypi/v/restricted-functions.svg)](https://pypi.python.org/pypi/restricted-functions/)
 
@@ -65,46 +65,46 @@ Please note that this _does not_ sandbox your code, and does not have a complete
 
 ## Additional options
 
-- ProtectFiles
+- _ProtectFiles
 
-The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+The `_ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
 
 To use, replace the setup with:
 
 ```py
-__ref__(ref.ProtectFiles)
+__ref__(ref._ProtectFiles)
 ```
 
 This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
-- ProtectDirs
+- _ProtectDirs
 
-The `ProtectDirs` option protects against the deletion of directories.
+The `_ProtectDirs` option protects against the deletion of directories.
 
 To use, replace the setup with:
 
 ```py
-__ref__(ref.ProtectDirs)
+__ref__(ref._ProtectDirs)
 ```
 
-- LockPerms
+- _LockPerms
 
 This will prevent use of chmod in that Python file.
 
 To use, replace the setup with:
 
 ```py
-__ref__(ref.LockPerms)
+__ref__(ref._LockPerms)
 ```
 
-- Silent
+- _Silent
 
 This will replace any removed function with a dummy function.
 
 To use, replace the setup with:
 
 ```py
-__ref__(ref.Silent)
+__ref__(ref._Silent)
 ```
 
 That way, you won't get an error when trying to use `os.system("echo \"doing something that harms your system...\"")` but nothing will happen
@@ -135,7 +135,6 @@ That way, you won't get an error when trying to use `os.system("echo \"doing som
 
 Better docs can be found under [the _docs/ref_ folder](https://donno2048.github.io/restricted-functions/docs/ref){:target="_blank" rel="noopener"}, but you can use:
 
-```py
->>> import ref
->>> help(ref)
+```sh
+> python3 -c help('ref')
 ```

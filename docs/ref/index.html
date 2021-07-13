@@ -23,112 +23,6 @@
 </header>
 <section id="section-intro">
 <p>To use this module just use the main function at the top of your code.</p>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">&#34;&#34;&#34;To use this module just use the main function at the top of your code.&#34;&#34;&#34;
-
-from sys import modules as __modules
-import importlib
-ProtectFiles, ProtectDirs, LockPerms, Silent = range(4)
-__protectfiles, __silent = None, None
-__restrict = {
-    &#34;os&#34;: [&#34;system&#34;, &#34;popen&#34;, &#34;kill&#34;, &#34;spawn&#34;, &#34;execl&#34;, &#34;execle&#34;, &#34;execlp&#34;, &#34;execlpe&#34;, &#34;execv&#34;, &#34;execve&#34;, &#34;execvp&#34;, &#34;execvpe&#34;, &#34;killpg&#34;, &#34;fork&#34;, &#34;forkpty&#34;, &#34;plock&#34;],
-    &#34;subprocess&#34;: [&#34;run&#34;, &#34;check_output&#34;, &#34;call&#34;,&#34;Popen&#34;],
-    &#34;pathlib.Path&#34;: [],
-    &#34;shutil&#34;: []
-}
-def ref(*args) -&gt; None:
-    &#34;&#34;&#34;
-    # Usage
-
-    ## Basic usage
-
-    ```py
-    import ref
-    __ref__()
-    ```
-
-    ## Additional options
-
-    - ProtectFiles
-
-    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.ProtectFiles)
-    ```
-
-    This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
-
-    - ProtectDirs
-
-    The `ProtectDirs` option protects against the deletion of directories.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.ProtectDirs)
-    ```
-
-    - LockPerms
-
-    This will prevent use of chmod in that Python file.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.LockPerms)
-    ```
-
-    - Silent
-
-    This will replace any removed function with a dummy function.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref.Silent)
-    ```
-
-    That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
-
-    &#34;&#34;&#34;
-    global __protectfiles, __restrict, __silent
-    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
-    __protectfiles, __silent = protectfiles, silent
-    if protectfiles:
-        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
-        __restrict[&#34;shutil&#34;].append(&#34;move&#34;)
-    if protectdirs:
-        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;shutil&#34;].extend([&#34;rmtree&#34;, &#34;move&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;rmdir&#34;)
-    if lockperms:
-        __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;chmod&#34;)
-    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
-    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open
-def __open(filename, mode=&#34;r&#34;, *args, **kwargs):
-    if __protectfiles and (&#34;w&#34; in mode or &#34;a&#34; in mode): raise AttributeError()
-    return open(filename, mode, *args, **kwargs)
-def __import(name, *args):
-    try: M = importlib.__import__(name, *args)
-    except AttributeError: return __import__
-    for mod in __restrict:
-        if name == mod:
-            for method in __restrict[mod]:
-                try:
-                    if __silent: M.__dict__[method] = lambda *_:None
-                    else: del M.__dict__[method]
-                except (AttributeError, KeyError): pass
-    return M
-if __name__ != &#39;__main__&#39;: __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__ref__&#39;] = ref</code></pre>
-</details>
 </section>
 <section>
 </section>
@@ -148,33 +42,33 @@ __ref__()
 </code></pre>
 <h2 id="additional-options">Additional options</h2>
 <ul>
-<li>ProtectFiles</li>
+<li>_ProtectFiles</li>
 </ul>
-<p>The <code>ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
+<p>The <code>_ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.ProtectFiles)
+<pre><code class="language-py">__ref__(ref._ProtectFiles)
 </code></pre>
 <p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
 <ul>
-<li>ProtectDirs</li>
+<li>_ProtectDirs</li>
 </ul>
-<p>The <code>ProtectDirs</code> option protects against the deletion of directories.</p>
+<p>The <code>_ProtectDirs</code> option protects against the deletion of directories.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.ProtectDirs)
+<pre><code class="language-py">__ref__(ref._ProtectDirs)
 </code></pre>
 <ul>
-<li>LockPerms</li>
+<li>_LockPerms</li>
 </ul>
 <p>This will prevent use of chmod in that Python file.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.LockPerms)
+<pre><code class="language-py">__ref__(ref._LockPerms)
 </code></pre>
 <ul>
-<li>Silent</li>
+<li>_Silent</li>
 </ul>
 <p>This will replace any removed function with a dummy function.</p>
 <p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref.Silent)
+<pre><code class="language-py">__ref__(ref._Silent)
 </code></pre>
 <p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
 <details class="source">
@@ -194,46 +88,46 @@ __ref__()
 
     ## Additional options
 
-    - ProtectFiles
+    - _ProtectFiles
 
-    The `ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
+    The `_ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.ProtectFiles)
+    __ref__(ref._ProtectFiles)
     ```
 
     This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
 
-    - ProtectDirs
+    - _ProtectDirs
 
-    The `ProtectDirs` option protects against the deletion of directories.
+    The `_ProtectDirs` option protects against the deletion of directories.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.ProtectDirs)
+    __ref__(ref._ProtectDirs)
     ```
 
-    - LockPerms
+    - _LockPerms
 
     This will prevent use of chmod in that Python file.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.LockPerms)
+    __ref__(ref._LockPerms)
     ```
 
-    - Silent
+    - _Silent
 
     This will replace any removed function with a dummy function.
 
     To use, replace the setup with:
 
     ```py
-    __ref__(ref.Silent)
+    __ref__(ref._Silent)
     ```
 
     That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
