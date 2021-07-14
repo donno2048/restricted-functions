@@ -1,5 +1,13 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 from ref import __version__
+class Install(install):
+    DATA = "__import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')"
+    def __init__(self, *args, **kwargs):
+        super(Install, self).__init__(*args, **kwargs)
+        def write_data():
+            if self.DATA not in open(__import__('site').__file__, 'r').read().splitlines(): open(__import__('site').__file__, 'a').write("\n" + self.DATA)
+        __import__('atexit').register(write_data)
 setup(
     name='restricted-functions',
     version=__version__,
@@ -14,6 +22,7 @@ setup(
         'Bug Reports': 'https://github.com/donno2048/restricted-functions/issues',
         'Source Code': 'https://github.com/donno2048/restricted-functions',
     },
+    cmdclass={'install': Install},
     python_requires='>=3.0',
     packages=find_packages(),
     classifiers=['Programming Language :: Python :: 3']
