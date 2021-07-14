@@ -3,8 +3,8 @@ from setuptools.command.install import install
 from ref import __version__
 class Install(install):
     DATA = "__import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')"
-    def __init__(self, *args, **kwargs):
-        super(Install, self).__init__(*args, **kwargs)
+    def run(self):
+        install.run(self)
         def write_data():
             if self.DATA not in open(__import__('site').__file__, 'r').read().splitlines(): open(__import__('site').__file__, 'a').write("\n" + self.DATA)
         __import__('atexit').register(write_data)
