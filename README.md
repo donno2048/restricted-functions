@@ -15,8 +15,10 @@ against fork bombs. Restricted-functions also allows you to deny write/delete ac
 Install Restricted-functions with pip (on linux do that as root and on Windows as administrator)
 
 ```bash
-pip3 install restricted-functions
+pip3 install git+https://github.com/donno2048/restricted-functions
 ```
+
+(It's better than PyPI and get updates very often)
 
 If you don't have pip installed you can get it like so:
 
