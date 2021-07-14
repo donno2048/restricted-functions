@@ -37,11 +37,10 @@ del p.exe
 
 ## Usage/Example
 
-### Important: the import and setup must be at the top of the file
+### Important: the setup must be at the top of the file
 
 ```py
->>> import ref
->>> __ref__()
+>>> __ref__() # no need to import anything
 >>> import os
 >>> os.system("echo \"doing something that harms your system...\"")
 Traceback (most recent call last):
