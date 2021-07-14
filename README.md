@@ -12,7 +12,7 @@ against fork bombs. Restricted-functions also allows you to deny write/delete ac
 
 ## Installation
 
-Install Restricted-functions with pip
+Install Restricted-functions with pip (on linux do that as root and on Windows as administrator)
 
 ```bash
 pip3 install restricted-functions
