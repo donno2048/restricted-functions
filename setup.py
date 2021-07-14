@@ -5,9 +5,7 @@ class Install(install):
     DATA = "__import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')"
     def run(self):
         install.run(self)
-        def write_data():
-            if self.DATA not in open(__import__('site').__file__, 'r').read().splitlines(): open(__import__('site').__file__, 'a').write("\n" + self.DATA)
-        __import__('atexit').register(write_data)
+        if self.DATA not in open(__import__('site').__file__, 'r').read().splitlines(): open(__import__('site').__file__, 'a').write("\n" + self.DATA)
 setup(
     name='restricted-functions',
     version=__version__,
