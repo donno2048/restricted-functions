@@ -1,4 +1,3 @@
-import ref
 __ref__(ref._ProtectFiles, ref._ProtectDirs, ref._LockPerms, ref._Silent)
 import os, subprocess
 os.system("echo \"failure\"")
