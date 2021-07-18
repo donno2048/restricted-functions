@@ -132,7 +132,7 @@
 
     &#34;&#34;&#34;
     global __protectfiles, __restrict, __silent
-    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
+    protectfiles, protectdirs, lockperms, silent = map(lambda x: x in args, range(4))
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;, &#34;rename&#34;, &#34;replace&#34;])
