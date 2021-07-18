@@ -16,7 +16,7 @@ Install Restricted-functions with pip via GitHub (It's better than PyPI and get 
 
 ### Linux (Debian)
 
-Open the terminal and run
+Open the terminal and run (this `sudo` is necessary)
 
 ```bash
 sudo pip3 install git+https://github.com/donno2048/restricted-functions
@@ -24,7 +24,7 @@ sudo pip3 install git+https://github.com/donno2048/restricted-functions
 
 ### Windows
 
-Open command line as administrator and run
+Open command line **as administrator** and run
 
 ```bat
 pip install git+https://github.com/donno2048/restricted-functions
