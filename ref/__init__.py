@@ -3,7 +3,7 @@
 from sys import modules as __modules
 import importlib
 _ProtectFiles, _ProtectDirs, _LockPerms, _Silent = range(4)
-__version__, __file__, __protectfiles, __silent = "1.2.0", None, None, None
+__version__, __file__, __protectfiles, __silent = "1.2.1", None, None, None
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
     "subprocess": ["run", "check_output", "call", "Popen"],
@@ -68,7 +68,7 @@ def ref(*args) -> None:
 
     """
     global __protectfiles, __restrict, __silent
-    protectfiles, protectdirs, lockperms, silent = [i in args for i in range(4)]
+    protectfiles, protectdirs, lockperms, silent = map(lambda x: x in args, range(4))
     __protectfiles, __silent = protectfiles, silent
     if protectfiles:
         __restrict["os"].extend(["remove", "unlink", "rename", "replace"])
