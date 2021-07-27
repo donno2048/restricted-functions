@@ -83,9 +83,10 @@ def ref(*args) -> None:
         __restrict["pathlib.Path"].append("chmod")
     __modules['__main__'].__builtins__.__dict__['__import__'] = __import
     __modules['__main__'].__builtins__.__dict__['open'] = __open
+_oldopen = open
 def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
-    return open(filename, mode, *args, **kwargs)
+    return __oldopen(filename, mode, *args, **kwargs)
 def __import(name, *args):
     try: M = importlib.__import__(name, *args)
     except AttributeError: return __import__
