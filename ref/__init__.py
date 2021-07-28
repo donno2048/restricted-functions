@@ -3,7 +3,7 @@
 from sys import modules as __modules
 import importlib
 _ProtectFiles, _ProtectDirs, _LockPerms, _Silent = range(4)
-__version__, __file__, __protectfiles, __silent = "1.2.1", None, None, None
+__version__, __file__, __protectfiles, __silent, __oldopen = "1.2.1", None, None, None, open
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock"],
     "subprocess": ["run", "check_output", "call", "Popen"],
@@ -83,7 +83,6 @@ def ref(*args) -> None:
         __restrict["pathlib.Path"].append("chmod")
     __modules['__main__'].__builtins__.__dict__['__import__'] = __import
     __modules['__main__'].__builtins__.__dict__['open'] = __open
-_oldopen = open
 def __open(filename, mode="r", *args, **kwargs):
     if __protectfiles and ("w" in mode or "a" in mode): raise AttributeError()
     return __oldopen(filename, mode, *args, **kwargs)
