@@ -123,10 +123,16 @@ That way, you won't get an error when trying to use `os.system("echo \"doing som
 ## Functions blocked by default
 
 - os.popen
+- os.popen2
+- os.popen3
 - os.system
 - subprocess.run
 - subprocess.check_output
 - subprocess.call
+- subprocess.Popen
+- subprocess.check_call
+- subprocess.getstatusoutput
+- subprocess.getoutput
 - os.kill
 - os.spawn
 - os.execl
