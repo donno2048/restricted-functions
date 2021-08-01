@@ -5,7 +5,7 @@ class Install(install):
     DATA = "\ntry: __import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')\nexcept ModuleNotFoundError: pass"
     def run(self):
         install.run(self)
-        if self.DATA not in open(__import__('site').__file__, 'r').read(): open(__import__('site').__file__, 'a').write("\n" + self.DATA)
+        if self.DATA not in open(__import__('site').__file__, 'r').read(): open(__import__('site').__file__, 'a').write(self.DATA)
 setup(
     name='restricted-functions',
     version=__version__,
