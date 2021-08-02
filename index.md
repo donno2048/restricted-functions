@@ -12,14 +12,14 @@ against fork bombs. Restricted-functions also allows you to deny write/delete ac
 
 ## Installation
 
-Install Restricted-functions with pip via GitHub (It's better than PyPI and get updates very often)
+Install Restricted-functions with pip
 
 ### Linux (Debian)
 
 Open the terminal and run (this `sudo` is necessary)
 
 ```bash
-sudo pip3 install git+https://github.com/donno2048/restricted-functions
+sudo pip3 install restricted-functions
 ```
 
 ### Windows
@@ -27,7 +27,7 @@ sudo pip3 install git+https://github.com/donno2048/restricted-functions
 Open command line **as administrator** and run
 
 ```bat
-pip install git+https://github.com/donno2048/restricted-functions
+pip install restricted-functions
 ```
 
 ### If you don't have pip installed you can get it like so:
