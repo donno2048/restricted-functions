@@ -1,11 +1,23 @@
 from setuptools import setup, find_packages
 from setuptools.command.install import install
+from setuptools.command.develop import develop
+from setuptools.command.egg_info import egg_info
 from ref import __version__
-class Install(install):
+def write():
     DATA = "\ntry: __import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')\nexcept ModuleNotFoundError: pass"
+    if DATA not in open(__import__('site').__file__, 'r').read(): open(__import__('site').__file__, 'a').write(DATA)
+class Install(install):
     def run(self):
         install.run(self)
-        if self.DATA not in open(__import__('site').__file__, 'r').read(): open(__import__('site').__file__, 'a').write(self.DATA)
+        write()
+class Develop(develop):
+    def run(self):
+        develop.run(self)
+        write()
+class EggInfo(egg_info):
+    def run(self):
+        egg_info.run(self)
+        write()
 setup(
     name='restricted-functions',
     version=__version__,
@@ -20,7 +32,11 @@ setup(
         'Bug Reports': 'https://github.com/donno2048/restricted-functions/issues',
         'Source Code': 'https://github.com/donno2048/restricted-functions',
     },
-    cmdclass={'install': Install},
+    cmdclass={
+        'install': Install,
+        'develop': Develop,
+        'egg_info': EggInfo
+    },
     python_requires='>=3.0',
     packages=find_packages(),
     classifiers=[
