@@ -23,5 +23,15 @@ setup(
     cmdclass={'install': Install},
     python_requires='>=3.0',
     packages=find_packages(),
-    classifiers=['Programming Language :: Python :: 3']
+    classifiers=[
+        'Development Status :: 6 - Mature',
+        'Environment :: No Input/Output (Daemon)',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3 :: Only',
+        'Topic :: Security'
+    ],
+    zip_safe=False
 )
