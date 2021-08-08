@@ -1,0 +1,43 @@
+name: Bug Report
+description: Create a report to help us improve
+title: "[Bug]"
+labels: 'bug'
+assignees:
+  - donno2048
+  - iam-py-test
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: bug
+    attributes:
+      label: What happened?
+      description: Describe the bug
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: What version are you running?
+      description: `pip3 freeze | grep restricted-functions`
+      placeholder: Put the output here
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/donno2048/restricted-functions/blob/master/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
