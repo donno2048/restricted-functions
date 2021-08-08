@@ -9,7 +9,6 @@ Restricted-functions is a package for Python that allows you to deny dangerous f
 
 By default, restricted functions prevent Python code from executing command line commands, and provides some protection against fork bombs. Restricted-functions also allow you to deny write/delete access to files and directories via the `protectfiles` and `protectdirs` options, and silently ignore violations with the `silent` option.
 
-
 ## Installation
 
 Install Restricted-functions with pip
@@ -49,7 +48,9 @@ del p.exe
 
 ## Usage/Example
 
-### Important: the setup must be at the top of the file
+### In a script
+
+#### Important: the setup must be at the top of the file
 
 ```py
 >>> __ref__() # no need to import anything
@@ -59,6 +60,10 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: module 'os' has no attribute 'system'
 ```
+
+### In the interactive shell
+
+Open your terminal and run `refcon` or `python3 -m ref`
 
 ## Contributing
 

@@ -49,5 +49,6 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
         'Topic :: Security'
     ],
-    zip_safe=False
+    zip_safe=False,
+    entry_points={ 'console_scripts': [ 'refcon=ref.__main__:main' ] }
 )
