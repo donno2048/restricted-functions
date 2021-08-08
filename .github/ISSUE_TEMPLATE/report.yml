@@ -1,0 +1,44 @@
+name: Function Report
+description: Report a dangerous function
+title: "[report]"
+labels: 'security'
+assignees:
+  - donno2048
+  - iam-py-test
+body:
+  - type: input
+    id: function
+    attributes:
+      label: Function
+      description: The unblocked dangerous function
+      placeholder: EX. os.system
+    validations:
+      required: true
+  - type: input
+    id: reason
+    attributes:
+      label: Why is this dangerous?
+      description: Please explain in as much detail as possible
+      placeholder: EX. It can execute arbitrary code
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Effect
+      description: What does this function affect?
+      options:
+        - File protection
+        - Directory protection
+        - Permission protection
+        - Something that fits none of the above or more than one of them
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/donno2048/restricted-functions/blob/master/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
