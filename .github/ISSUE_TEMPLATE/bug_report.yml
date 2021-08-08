@@ -23,13 +23,18 @@ body:
     attributes:
       label: To Reproduce
       description: Steps to reproduce the behavior
+      placeholder: |
+        1. 
+        1. 
+        1. 
     validations:
       required: false
   - type: input
     id: version
     attributes:
       label: What version are you running?
-      description: `pip3 freeze | grep restricted-functions`
+      description: |
+        `pip3 freeze | grep restricted-functions`
       placeholder: Put the output here
     validations:
       required: true
