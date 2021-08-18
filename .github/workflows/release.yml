@@ -37,10 +37,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@master
+      id: download
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        files: "refcon*"
+        files: "${{ steps.download.outputs.download-path }}/refcon*"
         automatic_release_tag: "latest"
         prerelease: false
         draft: true
