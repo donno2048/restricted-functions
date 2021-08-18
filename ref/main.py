@@ -1,4 +1,5 @@
-import __init__
+try: import __init__
+except ModuleNotFoundError: pass
 __ref__(*range(4))
 from sys import version, platform
 from code import InteractiveConsole

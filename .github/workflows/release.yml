@@ -1,7 +1,7 @@
 name: Release executable
 on: [workflow_dispatch]
 jobs:
-  on-ubuntu:
+  ubuntu:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
       with:
         name: "refcon"
         path: "refcon"
-  on-windows:
+  windows:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,12 +26,13 @@ jobs:
     - run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
-        pyinstaller --distpath . -F -n refcon --add-data "ref/__init__.py:." ref/main.py
+        pyinstaller --distpath . -F -n refcon --add-data "ref/__init__.py;." ref/main.py
     - uses: actions/upload-artifact@master
       with:
         name: "refcon.exe"
         path: "refcon.exe"
   release:
+    needs: [ubuntu, windows]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
