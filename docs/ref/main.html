@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>ref API documentation</title>
-<meta name="description" content="To use this module just use the main function at the top of your code." />
+<title>ref.main API documentation</title>
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -19,144 +19,34 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>ref</code></h1>
+<h1 class="title">Module <code>ref.main</code></h1>
 </header>
 <section id="section-intro">
-<p>To use this module just use the main function at the top of your code.</p>
-</section>
-<section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
-<dl>
-<dt><code class="name"><a title="ref.main" href="main.html">ref.main</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-</dl>
-</section>
-<section>
-</section>
-<section>
-<h2 class="section-title" id="header-functions">Functions</h2>
-<dl>
-<dt id="ref.ref"><code class="name flex">
-<span>def <span class="ident">ref</span></span>(<span>*args) ‑> None</span>
-</code></dt>
-<dd>
-<div class="desc"><h1 id="usage">Usage</h1>
-<h2 id="basic-usage">Basic usage</h2>
-<pre><code class="language-py">__ref__() # no need to import anything
-</code></pre>
-<h2 id="additional-options">Additional options</h2>
-<ul>
-<li>_ProtectFiles</li>
-</ul>
-<p>The <code>_ProtectFiles</code> option allows you to prevent Python files from using <code>open</code> to overwrite files, and block functions like <code>os.remove</code> from deleting files.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref._ProtectFiles)
-</code></pre>
-<p>This will cause any use of <code>open</code> to overwrite or append content to files to throw an error, and <code>os.remove</code>,<code>os.unlink</code>, and a few others are deleted.</p>
-<ul>
-<li>_ProtectDirs</li>
-</ul>
-<p>The <code>_ProtectDirs</code> option protects against the deletion of directories.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref._ProtectDirs)
-</code></pre>
-<ul>
-<li>_LockPerms</li>
-</ul>
-<p>This will prevent use of chmod in that Python file.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref._LockPerms)
-</code></pre>
-<ul>
-<li>_Silent</li>
-</ul>
-<p>This will replace any removed function with a dummy function.</p>
-<p>To use, replace the setup with:</p>
-<pre><code class="language-py">__ref__(ref._Silent)
-</code></pre>
-<p>That way, you won't get an error when trying to use <code>os.system("echo "doing something that harms your system..."")</code> but nothing will happen</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def ref(*args) -&gt; None:
-    &#34;&#34;&#34;
-    # Usage
-
-    ## Basic usage
-
-    ```py
-    __ref__() # no need to import anything
-    ```
-
-    ## Additional options
-
-    - _ProtectFiles
-
-    The `_ProtectFiles` option allows you to prevent Python files from using `open` to overwrite files, and block functions like `os.remove` from deleting files.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref._ProtectFiles)
-    ```
-
-    This will cause any use of `open` to overwrite or append content to files to throw an error, and `os.remove`,`os.unlink`, and a few others are deleted.
-
-    - _ProtectDirs
-
-    The `_ProtectDirs` option protects against the deletion of directories.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref._ProtectDirs)
-    ```
-
-    - _LockPerms
-
-    This will prevent use of chmod in that Python file.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref._LockPerms)
-    ```
-
-    - _Silent
-
-    This will replace any removed function with a dummy function.
-
-    To use, replace the setup with:
-
-    ```py
-    __ref__(ref._Silent)
-    ```
-
-    That way, you won&#39;t get an error when trying to use `os.system(&#34;echo \&#34;doing something that harms your system...\&#34;&#34;)` but nothing will happen
-
-    &#34;&#34;&#34;
-    global __protectfiles, __restrict, __silent
-    protectfiles, protectdirs, lockperms, silent = map(lambda x: x in args, range(4))
-    __protectfiles, __silent = protectfiles, silent
-    if protectfiles:
-        __restrict[&#34;os&#34;].extend([&#34;remove&#34;, &#34;unlink&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;unlink&#34;)
-        __restrict[&#34;shutil&#34;].append(&#34;move&#34;)
-    if protectdirs:
-        __restrict[&#34;os&#34;].extend([&#34;rmdir&#34;, &#34;removedirs&#34;, &#34;rename&#34;, &#34;replace&#34;])
-        __restrict[&#34;shutil&#34;].extend([&#34;rmtree&#34;, &#34;move&#34;])
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;rmdir&#34;)
-    if lockperms:
-        __restrict[&#34;os&#34;].append(&#34;chmod&#34;)
-        __restrict[&#34;pathlib.Path&#34;].append(&#34;chmod&#34;)
-    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;__import__&#39;] = __import
-    __modules[&#39;__main__&#39;].__builtins__.__dict__[&#39;open&#39;] = __open</code></pre>
+<pre><code class="python">try: import __init__
+except ModuleNotFoundError: pass
+else:
+    __ref__(*range(4))
+    from sys import version, platform
+    from code import InteractiveConsole
+    def main():
+        print(&#34;Python %s on %s\nType \&#34;help\&#34;, \&#34;copyright\&#34;, \&#34;credits\&#34; or \&#34;license\&#34; for more information.&#34; % (version, platform))
+        inter, flag = InteractiveConsole(), False
+        while True:
+            try: flag = inter.push(input(&#34;&gt;&gt;&gt; &#34; if not flag else &#34;... &#34;))
+            except KeyboardInterrupt: print(&#34;\nKeyboardInterrupt&#34;)
+            except EOFError: break
+    if __name__ == &#39;__main__&#39;: main()</code></pre>
 </details>
-</dd>
-</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
 </section>
 <section>
 </section>
@@ -167,14 +57,9 @@
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ref.main" href="main.html">ref.main</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
-<li><code><a title="ref.ref" href="#ref.ref">ref</a></code></li>
+<li><code><a title="ref" href="index.html">ref</a></code></li>
 </ul>
 </li>
 </ul>
