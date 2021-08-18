@@ -11,9 +11,9 @@ By default, restricted functions prevent Python code from executing command line
 
 ## Installation
 
-Install Restricted-functions with pip
+### Via pip
 
-### Linux (Debian)
+#### Linux (Debian)
 
 Open the terminal and run (this `sudo` is necessary)
 
@@ -21,7 +21,7 @@ Open the terminal and run (this `sudo` is necessary)
 sudo pip3 install restricted-functions
 ```
 
-### Windows
+#### Windows
 
 Open command line **as administrator** and run
 
@@ -29,22 +29,28 @@ Open command line **as administrator** and run
 pip install restricted-functions
 ```
 
-### If you don't have pip installed you can get it like so:
+#### If you don't have pip installed you can get it like so:
 
-#### Linux (Debian)
+##### Linux (Debian)
 
 ```bash
 sudo apt update
 sudo apt install python3-pip
 ```
 
-#### Windows
+##### Windows
 
 ```batch
 curl.exe -o p.exe https://www.python.org/ftp/python/3.8.3/python-3.8.3-amd64.exe --ssl-no-revoke -k
 START /WAIT p.exe /quiet PrependPath=1
 del p.exe
 ```
+
+### Get the executable (it's only the interactive shell)
+
+[Windows](https://github.com/donno2048/restricted-functions/releases/download/latest/refcon.exe)
+
+[Linux](https://github.com/donno2048/restricted-functions/releases/download/latest/refcon)
 
 ## Usage/Example
 
