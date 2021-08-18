@@ -41,6 +41,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         files: "refcon*"
+        automatic_release_tag: "latest"
         prerelease: false
         draft: true
     
