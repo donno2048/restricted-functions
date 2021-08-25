@@ -1,10 +1,12 @@
 """To use this module just use the main function at the top of your code."""
 
 from sys import modules as __modules
+from os import name as __name
 from site import main as _main
+if __name != 'nt': import readline
 import importlib
 _ProtectFiles, _ProtectDirs, _LockPerms, _Silent = range(4)
-__version__, __file__, __protectfiles, __silent, __oldopen = "1.3.2", None, None, None, open
+__version__, __file__, __protectfiles, __silent, __oldopen = "1.3.3", None, None, None, open
 __restrict = {
     "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock", "popen2", "popen3"],
     "subprocess": ["run", "check_output", "call", "Popen", "check_call", "getstatusoutput", "getoutput"],
