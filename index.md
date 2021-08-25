@@ -48,9 +48,9 @@ del p.exe
 
 ### Get the executable (it's only the interactive shell)
 
-[Windows](https://github.com/donno2048/restricted-functions/releases/download/latest/refcon.exe)
+[Windows](https://github.com/donno2048/restricted-functions/releases/download/v1.3.2/refcon.exe)
 
-[Linux](https://github.com/donno2048/restricted-functions/releases/download/latest/refcon)
+[Linux](https://github.com/donno2048/restricted-functions/releases/download/v1.3.2/refcon)
 
 ## Usage/Example
 
