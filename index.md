@@ -53,7 +53,7 @@ del p.exe
 [Linux](https://github.com/donno2048/restricted-functions/releases/download/v1.3.2/refcon)
 
 #### IMPORTANT NOTE:
-[Some antimalware/antivirus products](https://www.virustotal.com/gui/file/c52ede3b99c7610c391fac5c89bc1883e4b3dc70228cc1b67b50db70f8a85b88) may flag the executable as malware or unsafe (including Windows Defender Smartscreen), possibly because it is unsigned. It is _not_ malware, and is safe to run. We have submitted False Positive report to the affected AV venders, and are awaiting an reply
+[Some antimalware/antivirus products](https://www.virustotal.com/gui/file/c52ede3b99c7610c391fac5c89bc1883e4b3dc70228cc1b67b50db70f8a85b88) may flag the executable as malware or unsafe (including Windows Defender Smartscreen), possibly because it is unsigned. It is _not_ malware, and is safe to run. We have submitted False Positive report to the affected AV venders, and are awaiting an reply. See https://github.com/pyinstaller/pyinstaller/issues/5490 and https://github.com/pyinstaller/pyinstaller/issues/603 for more information. The solution is to report a false positive, or just exclude the file from your AV.
 
 ## Usage/Example
 
