@@ -1,4 +1,4 @@
-__ref__(*range(4))
+__ref__(*range(4)) # initialize __ref__ with all the optional args
 from sys import version, platform, exit, argv, stdin
 from argparse import ArgumentParser, FileType
 from code import InteractiveConsole
