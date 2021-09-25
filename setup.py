@@ -4,7 +4,7 @@ from setuptools.command.develop import develop
 from setuptools.command.egg_info import egg_info
 from ref import __version__
 def write():
-    DATA = "\ntry: __import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')\nexcept ModuleNotFoundError: pass"
+    DATA = "\ntry: __import__('sys').modules['__main__'].__builtins__.__dict__['ref'] = __import__('ref')\nexcept ImportError: pass"
     if DATA not in open(__import__('site').__file__, 'r').read(): open(__import__('site').__file__, 'a').write(DATA)
 class Install(install):
     def run(self):
