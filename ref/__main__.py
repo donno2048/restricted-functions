@@ -26,11 +26,16 @@ def main():
         args.environment = True
         args.site = False
     if args.site:
-        #FIXME: won't remove ~/.local/lib/python3.*/site-packages
         import sys, site
         for dir in site.getsitepackages():
             if dir in sys.path:
                 sys.path.remove(dir)
+        site_packages = []
+        for i in sys.path:
+            if "site-packages" in i: # ugly solution
+                site_packages += [i]
+        for package_path in site_packages:
+            sys.path.remove(package_path)
     if args.environment:
         import os, re
         pattern, mathces = re.compile("PYTHON*"), []
