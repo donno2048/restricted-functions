@@ -88,6 +88,7 @@ optional arguments:
   -m mod      run library module as a script (terminates option list)
   -           program read from stdin (default; interactive mode if a tty)
   -E          ignore PYTHON* environment variables (such as PYTHONPATH)
+  -S          use the original sys.argv not the arg list
   -s          don't add user site directory to sys.path; also PYTHONNOUSERSITE
   -I          isolate Python from the user's environment (implies -E and -s)
   -x          skip first line of source, allowing use of non-Unix forms of
