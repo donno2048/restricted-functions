@@ -29,7 +29,7 @@ Open command line **as administrator** and run
 pip install restricted-functions
 ```
 
-#### If you don't have pip installed you can get it like so:
+#### If you don't have pip installed you can get it like so
 
 ##### Linux (Debian)
 
@@ -54,9 +54,9 @@ del p.exe
 
 [Debain](https://github.com/donno2048/refcon)
 
-#### IMPORTANT NOTE:
-[Some antimalware/antivirus products](https://www.virustotal.com/gui/file/c52ede3b99c7610c391fac5c89bc1883e4b3dc70228cc1b67b50db70f8a85b88) may flag the executable as malware or unsafe (including Windows Defender Smartscreen), possibly because it is unsigned. It is _not_ malware, and is safe to run. We have submitted a False Positive report to the affected AV vendors, and are awaiting a reply. See https://github.com/pyinstaller/pyinstaller/issues/5490 and https://github.com/pyinstaller/pyinstaller/issues/603 for more information. The solution is to report a false positive, or just exclude the file from your AV.
+#### IMPORTANT NOTE
 
+[Some antimalware/antivirus products](https://www.virustotal.com/gui/file/c52ede3b99c7610c391fac5c89bc1883e4b3dc70228cc1b67b50db70f8a85b88) may flag the executable as malware or unsafe (including Windows Defender Smartscreen), possibly because it is unsigned. It is _not_ malware, and is safe to run. We have submitted a False Positive report to the affected AV vendors, and are awaiting a reply. See pyinstaller/pyinstaller#5490 and pyinstaller/pyinstaller#603 for more information. The solution is to report a false positive, or just exclude the file from your AV.
 
 ## Usage/Example
 
@@ -73,9 +73,29 @@ Traceback (most recent call last):
 AttributeError: module 'os' has no attribute 'system'
 ```
 
-### In the interactive shell
+### In the terminal
 
-Open your terminal and run `refcon` or `python3 -m ref`
+```py
+usage: refcon [option] ... [-c cmd | -m mod | file | -] [arg] ...
+
+positional arguments:
+  file        program read from script file
+  arg
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -c cmd      program passed in as string (terminates option list)
+  -m mod      run library module as a script (terminates option list)
+  -           program read from stdin (default; interactive mode if a tty)
+  -E          ignore PYTHON* environment variables (such as PYTHONPATH)
+  -s          don't add user site directory to sys.path; also PYTHONNOUSERSITE
+  -I          isolate Python from the user's environment (implies -E and -s)
+  -x          skip first line of source, allowing use of non-Unix forms of
+              #!cmd
+  -q          don't print version and copyright messages on interactive
+              startup
+  -V          print the Python version number and exit (also --version)
+```
 
 ## Contributing
 
