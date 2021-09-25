@@ -10,6 +10,7 @@ def main():
     group.add_argument('file', nargs='?', type=FileType('r'), help='program read from script file')
     group.add_argument('-', dest='raw', action='store_true', help='program read from stdin (default; interactive mode if a tty)')
     parser.add_argument('-E', dest='environment', action='store_true', help='ignore PYTHON* environment variables (such as PYTHONPATH)')
+    parser.add_argument('-S', dest='argv', action='store_false', help='use the original sys.argv not the arg list') # special setting not found in Python
     parser.add_argument('-s', dest='site', action='store_true', help='don\'t add user site directory to sys.path; also PYTHONNOUSERSITE')
     parser.add_argument('-I', dest='isolate', action='store_true', help='isolate Python from the user\'s environment (implies -E and -s)')
     parser.add_argument('-x', dest='skip', action='store_true', help='skip first line of source, allowing use of non-Unix forms of #!cmd')
@@ -19,7 +20,7 @@ def main():
     args = parser.parse_args()
     if args.version:
         exit("Python %s" % version.split(' ')[0])
-    if args.arg:
+    if args.argv:
         import sys
         sys.argv = args.arg
     if args.isolate:
