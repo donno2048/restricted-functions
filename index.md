@@ -98,6 +98,10 @@ optional arguments:
   -V          print the Python version number and exit (also --version)
 ```
 
+## Demo
+
+View the [online demo](https://donno2048.github.io/ref-online/). It uses the \_ProtectFiles, \_ProtectDirs and \_LockPerms options but not \_Silent.
+
 ## Contributing
 
 Contributions are always welcome!
