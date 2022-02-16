@@ -31,88 +31,6 @@
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="ref._main"><code class="name flex">
-<span>def <span class="ident">_main</span></span>(<span>)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Add standard site-specific directories to the module search path.</p>
-<p>This function is called automatically when this module is imported,
-unless the python interpreter was started with the -S flag.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def main():
-    &#34;&#34;&#34;Add standard site-specific directories to the module search path.
-
-    This function is called automatically when this module is imported,
-    unless the python interpreter was started with the -S flag.
-    &#34;&#34;&#34;
-    global ENABLE_USER_SITE
-
-    orig_path = sys.path[:]
-    known_paths = removeduppaths()
-    if orig_path != sys.path:
-        # removeduppaths() might make sys.path absolute.
-        # fix __file__ and __cached__ of already imported modules too.
-        abs_paths()
-
-    known_paths = venv(known_paths)
-    if ENABLE_USER_SITE is None:
-        ENABLE_USER_SITE = check_enableusersite()
-    known_paths = addusersitepackages(known_paths)
-    known_paths = addsitepackages(known_paths)
-    setquit()
-    setcopyright()
-    sethelper()
-    if not sys.flags.isolated:
-        enablerlcompleter()
-    execsitecustomize()
-    if ENABLE_USER_SITE:
-        execusercustomize()</code></pre>
-</details>
-</dd>
-<dt id="ref.readline"><code class="name flex">
-<span>def <span class="ident">readline</span></span>(<span>)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Add standard site-specific directories to the module search path.</p>
-<p>This function is called automatically when this module is imported,
-unless the python interpreter was started with the -S flag.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def main():
-    &#34;&#34;&#34;Add standard site-specific directories to the module search path.
-
-    This function is called automatically when this module is imported,
-    unless the python interpreter was started with the -S flag.
-    &#34;&#34;&#34;
-    global ENABLE_USER_SITE
-
-    orig_path = sys.path[:]
-    known_paths = removeduppaths()
-    if orig_path != sys.path:
-        # removeduppaths() might make sys.path absolute.
-        # fix __file__ and __cached__ of already imported modules too.
-        abs_paths()
-
-    known_paths = venv(known_paths)
-    if ENABLE_USER_SITE is None:
-        ENABLE_USER_SITE = check_enableusersite()
-    known_paths = addusersitepackages(known_paths)
-    known_paths = addsitepackages(known_paths)
-    setquit()
-    setcopyright()
-    sethelper()
-    if not sys.flags.isolated:
-        enablerlcompleter()
-    execsitecustomize()
-    if ENABLE_USER_SITE:
-        execusercustomize()</code></pre>
-</details>
-</dd>
 <dt id="ref.ref"><code class="name flex">
 <span>def <span class="ident">ref</span></span>(<span>*args) ‑> None</span>
 </code></dt>
@@ -244,8 +162,6 @@ unless the python interpreter was started with the -S flag.</p></div>
 <ul id="index">
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="ref._main" href="#ref._main">_main</a></code></li>
-<li><code><a title="ref.readline" href="#ref.readline">readline</a></code></li>
 <li><code><a title="ref.ref" href="#ref.ref">ref</a></code></li>
 </ul>
 </li>
