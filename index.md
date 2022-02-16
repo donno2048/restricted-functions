@@ -164,31 +164,38 @@ That way, you won't get an error when trying to use `os.system("echo \"doing som
 
 ## Functions blocked by default
 
-- os.popen
-- os.popen2
-- os.popen3
-- os.system
-- subprocess.run
-- subprocess.check_output
-- subprocess.call
-- subprocess.Popen
-- subprocess.check_call
-- subprocess.getstatusoutput
-- subprocess.getoutput
-- os.kill
-- os.spawn
-- os.execl
-- os.execle
-- os.execlp
-- os.execlpe
-- os.execv
-- os.execve
-- os.execvp
-- os.execvpe
-- os.killpg
-- os.fork
-- os.forkpty
-- os.plock
+- [os.execl](https://docs.python.org/3/library/os.html#os.execl)
+- [os.execle](https://docs.python.org/3/library/os.html#os.execle)
+- [os.execlp](https://docs.python.org/3/library/os.html#os.execlp)
+- [os.execlpe](https://docs.python.org/3/library/os.html#os.execlpe)
+- [os.execv](https://docs.python.org/3/library/os.html#os.execv)
+- [os.execve](https://docs.python.org/3/library/os.html#os.execve)
+- [os.execvp](https://docs.python.org/3/library/os.html#os.execvp)
+- [os.execvpe](https://docs.python.org/3/library/os.html#os.execvpe)
+- [os.fork](https://docs.python.org/3/library/os.html#os.fork)
+- [os.forkpty](https://docs.python.org/3/library/os.html#os.forkpty)
+- [os.kill](https://docs.python.org/3/library/os.html#os.kill)
+- [os.killpg](https://docs.python.org/3/library/os.html#os.killpg)
+- [os.plock](https://docs.python.org/3/library/os.html#os.plock)
+- [os.popen](https://docs.python.org/3/library/os.html#os.popen)
+- [os.posix_spawn](https://docs.python.org/3/library/os.html#os.posix_spawn)
+- [os.posix_spawnp](https://docs.python.org/3/library/os.html#os.posix_spawnp)
+- [os.spawnl](https://docs.python.org/3/library/os.html#os.spawnl)
+- [os.spawnle](https://docs.python.org/3/library/os.html#os.spawnle)
+- [os.spawnlp](https://docs.python.org/3/library/os.html#os.spawnlp)
+- [os.spawnlpe](https://docs.python.org/3/library/os.html#os.spawnlpe)
+- [os.spawnv](https://docs.python.org/3/library/os.html#os.spawnv)
+- [os.spawnve](https://docs.python.org/3/library/os.html#os.spawnve)
+- [os.spawnvp](https://docs.python.org/3/library/os.html#os.spawnvp)
+- [os.spawnvpe](https://docs.python.org/3/library/os.html#os.spawnvpe)
+- [os.system](https://docs.python.org/3/library/os.html#os.system)
+- [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen)
+- [subprocess.call](https://docs.python.org/3/library/subprocess.html#subprocess.call)
+- [subprocess.check_call](https://docs.python.org/3/library/subprocess.html#subprocess.check_call)
+- [subprocess.check_output](https://docs.python.org/3/library/subprocess.html#subprocess.check_output)
+- [subprocess.getoutput](https://docs.python.org/3/library/subprocess.html#subprocess.getoutput)
+- [subprocess.getstatusoutput](https://docs.python.org/3/library/subprocess.html#subprocess.getstatusoutput)
+- [subprocess.run](https://docs.python.org/3/library/subprocess.html#subprocess.run)
 
 ## Documentation
 
