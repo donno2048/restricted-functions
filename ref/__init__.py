@@ -1,15 +1,15 @@
 """To use this module just use the main function at the top of your code."""
 
+__all__ = ["_ProtectFiles", "_ProtectDirs", "_LockPerms", "_Silent", "ref", "_main"]
 from sys import modules as __modules
 from os import name as __name
 from site import main as _main
-if __name != 'nt': import readline
+if __name != 'nt': __all__.append(__import__("readline").__name__) # to make sure readline is imported
 import importlib
-_ProtectFiles, _ProtectDirs, _LockPerms, _Silent = range(4)
-__version__, __file__, __protectfiles, __silent, __oldopen = "1.4.2", None, None, None, open
+_ProtectFiles, _ProtectDirs, _LockPerms, _Silent, __version__, __file__, __protectfiles, __silent, __oldopen = *range(4), "1.4.3", None, None, None, open
 __restrict = {
-    "os": ["system", "popen", "kill", "spawn", "execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "killpg", "fork", "forkpty", "plock", "popen2", "popen3"],
-    "subprocess": ["run", "check_output", "call", "Popen", "check_call", "getstatusoutput", "getoutput"],
+    "os": ["execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "fork", "forkpty", "kill", "killpg", "plock", "popen", "posix_spawn", "posix_spawnp", "spawnl", "spawnle", "spawnlp", "spawnlpe", "spawnv", "spawnve", "spawnvp", "spawnvpe", "system"],
+    "subprocess": ["Popen", "call", "check_call", "check_output", "getoutput", "getstatusoutput", "run"],
     "pathlib.Path": [],
     "shutil": []
 }
