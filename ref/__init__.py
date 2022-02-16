@@ -1,10 +1,10 @@
 """To use this module just use the main function at the top of your code."""
 
-__all__ = ["_ProtectFiles", "_ProtectDirs", "_LockPerms", "_Silent", "ref", "_main"]
+__all__ = ["_ProtectFiles", "_ProtectDirs", "_LockPerms", "_Silent", "ref"]
 from sys import modules as __modules
 from os import name as __name
 from site import main as _main
-if __name != 'nt': __all__.append(__import__("readline").__name__) # to make sure readline is imported
+if __name != 'nt': __import__("readline")
 import importlib
 _ProtectFiles, _ProtectDirs, _LockPerms, _Silent, __version__, __file__, __protectfiles, __silent, __oldopen = *range(4), "1.4.3", None, None, None, open
 __restrict = {
