@@ -50,5 +50,6 @@ setup(
         'Topic :: Security'
     ],
     zip_safe=False,
+    platforms="any",
     entry_points={ 'console_scripts': [ 'refcon=ref.__main__:main' ] }
 )
