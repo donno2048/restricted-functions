@@ -23,7 +23,7 @@ sudo pip3 install restricted-functions
 
 #### Windows
 
-Open command line **as administrator** and run
+Open command line and run
 
 ```bat
 pip install restricted-functions
