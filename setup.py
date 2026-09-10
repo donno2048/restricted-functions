@@ -37,7 +37,7 @@ setup(
         'develop': Develop,
         'egg_info': EggInfo
     },
-    python_requires='>=3.0',
+    python_requires='>=3.0,<3.10',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 6 - Mature',
