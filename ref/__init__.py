@@ -6,7 +6,7 @@ from os import name as __name
 from site import main as _main
 if __name != 'nt': __import__("readline")
 import importlib
-_ProtectFiles, _ProtectDirs, _LockPerms, _Silent, __version__, __file__, __protectfiles, __silent, __oldopen = *range(4), "1.4.3", None, None, None, open
+_ProtectFiles, _ProtectDirs, _LockPerms, _Silent, __version__, __file__, __protectfiles, __silent, __oldopen = *range(4), "1.4.4", None, None, None, open
 __restrict = {
     "os": ["execl", "execle", "execlp", "execlpe", "execv", "execve", "execvp", "execvpe", "fork", "forkpty", "kill", "killpg", "plock", "popen", "posix_spawn", "posix_spawnp", "spawnl", "spawnle", "spawnlp", "spawnlpe", "spawnv", "spawnve", "spawnvp", "spawnvpe", "system"],
     "subprocess": ["Popen", "call", "check_call", "check_output", "getoutput", "getstatusoutput", "run"],
